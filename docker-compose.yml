@@ -1,0 +1,37 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.6
+    container_name: mysql-egames
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mi-contraseña
+      MYSQL_DATABASE: egames
+    ports:
+      - 3310:3306
+    volumes:
+      # - "./docker/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+      # - "./docker/mysql/egames.sql:/docker-entrypoint-initdb.d/1egames.sql"
+      # - "./docker/mysql/egamesData.sql:/docker-entrypoint-initdb.d/2egamesData.sql"
+      - ~/egamesData/mysql:/var/lib/mysql
+    networks:
+      - egames
+
+
+  node:
+    build: .
+    container_name: node-egames
+    restart: always
+    ports:
+      - 3010:3000
+    depends_on:
+        - mysql
+    networks:
+        - egames
+    volumes:
+        - ./:/usr/src/app
+        - exclude:/usr/src/app/node_modules/
+volumes:
+  exclude:
+networks:
+  egames: 
