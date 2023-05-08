@@ -32,3 +32,8 @@ INSERT INTO games (name, description, release_date) VALUES
   ('Watch Dogs 2', 'Un juego de mundo abierto de acción y aventura en un entorno urbano.', '2016-11-15'),
   ('The Division 2', 'Un juego de disparos en tercera persona con elementos de juego en línea.', '2019-03-15'),
   ('Sekiro: Shadows Die Twice', 'Un desafiante juego de acción y aventura ambientado en el Japón feudal.', '2019-03-22');
+  
+INSERT INTO stock (idgame, stock, platform, price)
+SELECT idgame, 100, 'Play Station 4', 3000
+FROM games
+WHERE idgame BETWEEN 33 AND 66;
