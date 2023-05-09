@@ -1,5 +1,4 @@
 //Description: Model for the game table
-(name, description, release_date, cover)
 const Game = connection.define("games", {
     idgame: {
         type: Sequelize.INTEGER,
