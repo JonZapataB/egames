@@ -1,2 +1,2 @@
 USE egamesSQL;
-SELECT * FROM stockHistory;
+SELECT * FROM stock;

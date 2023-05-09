@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `egamesSQL`.`users` (
   `email` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`iduser`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
 ENGINE = InnoDB;
 
 
@@ -61,8 +61,8 @@ CREATE TABLE IF NOT EXISTS `egamesSQL`.`orders` (
   `iduser` INT UNSIGNED NOT NULL,
   `idstatus` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`idorder`, `iduser`, `idstatus`),
-  INDEX `fk_orders_users1_idx` (`iduser` ASC) VISIBLE,
-  INDEX `fk_orders_status1_idx` (`idstatus` ASC) VISIBLE,
+  INDEX `fk_orders_users1_idx` (`iduser` ASC),
+  INDEX `fk_orders_status1_idx` (`idstatus` ASC),
   CONSTRAINT `fk_orders_users1`
     FOREIGN KEY (`iduser`)
     REFERENCES `egamesSQL`.`users` (`iduser`)
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `egamesSQL`.`userInfo` (
   `lastname` VARCHAR(45) NOT NULL,
   `adress` VARCHAR(200) NOT NULL,
   `phoneNumber` VARCHAR(20) NULL,
-  INDEX `fk_userInfo_users_idx` (`iduser` ASC) VISIBLE,
+  INDEX `fk_userInfo_users_idx` (`iduser` ASC),
   PRIMARY KEY (`iduser`),
   CONSTRAINT `fk_userInfo_users`
     FOREIGN KEY (`iduser`)
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `egamesSQL`.`stock` (
   `price` INT UNSIGNED NULL,
   `idgame` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`idgame`, `platform`),
-  INDEX `fk_stock_games1_idx` (`idgame` ASC) VISIBLE,
+  INDEX `fk_stock_games1_idx` (`idgame` ASC),
   CONSTRAINT `fk_stock_games1`
     FOREIGN KEY (`idgame`)
     REFERENCES `egamesSQL`.`games` (`idgame`)
@@ -122,8 +122,8 @@ CREATE TABLE IF NOT EXISTS `egamesSQL`.`orders_has_stock` (
   `idgame` INT UNSIGNED NOT NULL,
   `platform` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idorder`, `idgame`, `platform`),
-  INDEX `fk_orders_has_stock_orders1_idx` (`idorder` ASC) VISIBLE,
-  INDEX `fk_orders_has_stock_stock1_idx` (`idgame` ASC, `platform` ASC) VISIBLE,
+  INDEX `fk_orders_has_stock_orders1_idx` (`idorder` ASC),
+  INDEX `fk_orders_has_stock_stock1_idx` (`idgame` ASC, `platform` ASC),
   CONSTRAINT `fk_orders_has_stock_orders1`
     FOREIGN KEY (`idorder`)
     REFERENCES `egamesSQL`.`orders` (`idorder`)
