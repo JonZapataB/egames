@@ -2,7 +2,7 @@
 import connection from '../config/db.js';
 import Sequelize from 'sequelize';
 
-const UserInfo = connection.define('user_info', {
+const UserInfo = connection.define('userInfo', {
     iduser: {
         type: Sequelize.INTEGER,
         primaryKey: true,
