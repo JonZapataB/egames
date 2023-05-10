@@ -1,15 +1,17 @@
+import Game from "../models/games.js";
+
 const getAll = async (req, res) => {
   try {
     let games = await Game.findAll({
-      attributes: ["idgame", "name", "description", "release_date", "cover"],
-      /*  include: [
-        { model: Stadium, attributes: ["name", "idstadium"], as: "stadium" },
+      attributes: [],
+      include: [
+        { model: "", attributes: [], as: "" },
         {
-          model: Tournament,
-          attributes: ["name", "idtournament"],
-          as: "tournament",
+          model: "",
+          attributes: [],
+          as: "",
         },
-      ], */
+      ],
     });
     res.send(games);
   } catch (error) {

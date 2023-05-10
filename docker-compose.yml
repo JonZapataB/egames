@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   mysql:
     image: mysql:5.6
@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: mi-contraseña
-      MYSQL_DATABASE: egamesSQL
+      MYSQL_DATABASE: egamessql
     ports:
       - 3311:3306
     volumes:
@@ -20,13 +20,13 @@ services:
     ports:
       - 3011:3000
     depends_on:
-        - mysql
+      - mysql
     networks:
-        - egames
+      - egames
     volumes:
-        - ./:/usr/src/app
-        - exclude:/usr/src/app/node_modules/
+      - ./:/usr/src/app
+      - exclude:/usr/src/app/node_modules/
 volumes:
   exclude:
 networks:
-  egames: 
+  egames:
