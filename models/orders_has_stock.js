@@ -18,10 +18,6 @@ const OrdersHasStock = connection.define("orders_has_stock", {
     idgame: {
         type: Sequelize.INTEGER,
         allowNull: false
-    },
-    plataform:{
-        type: Sequelize.STRING(45),
-        allowNull: false
     }
 });
 

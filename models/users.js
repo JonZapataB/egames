@@ -2,7 +2,6 @@
 import connection from '../config/db.js';
 import Sequelize from 'sequelize';
 import UserInfo from './user_info.js';
-import OrdersHasStock from './orders_has_stock.js';
 import Orders from './orders.js';
 
 
@@ -31,12 +30,11 @@ UserInfo.belongsTo(User, {
 User.hasOne(UserInfo, { 
     foreignKey: 'iduser', sourceKey: 'iduser' 
 });
-// 
-User.hasMany(OrdersHasStock, {
-    foreignKey: 'iduser', sourceKey: 'iduser'
-});
 
 User.hasMany(Orders, {
     foreignKey: 'iduser', sourceKey: 'iduser'
 });
 
+Orders.belongsTo(User, {
+    foreignKey: 'iduser', targetKey: 'iduser'
+});

@@ -1,6 +1,7 @@
 //Describe: Model for status
 import connection from "../config/db.js";
 import Sequelize from "sequelize";
+import Orders from "./orders.js";
 
 const Status = connection.define("status", {
     idstatus: {
@@ -16,3 +17,11 @@ const Status = connection.define("status", {
 
 
 export default Status;
+
+Status.hasMany(Orders, {
+    foreignKey: 'idstatus', sourceKey: 'idstatus'
+});
+
+Orders.belongsTo(Status, {
+    foreignKey: 'idstatus', targetKey: 'idstatus'
+});
