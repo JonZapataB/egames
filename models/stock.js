@@ -1,5 +1,5 @@
 //Desc: Model for stock table
-import connection from "../database.js";
+import connection from "../db.js";
 import Sequelize from "sequelize";
 
 const Stock = connection.define("stock", {
