@@ -3,15 +3,7 @@ import Game from "../models/games.js";
 const getAll = async (req, res) => {
   try {
     let games = await Game.findAll({
-      attributes: [],
-      include: [
-        { model: "", attributes: [], as: "" },
-        {
-          model: "",
-          attributes: [],
-          as: "",
-        },
-      ],
+      attributes: ["idgame", "name", "description", "release_date", "cover"],
     });
     res.send(games);
   } catch (error) {

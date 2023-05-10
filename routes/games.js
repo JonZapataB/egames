@@ -4,8 +4,8 @@ import gameController from "../controller/gameController.js";
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.send("Muestra todos los juegos");
-  //gameController.getAll(req, res);
+  //res.send("Muestra todos los juegos");
+  gameController.getAll(req, res);
 });
 
 router.get("/:id", (req, res) => {
