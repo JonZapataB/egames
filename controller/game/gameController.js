@@ -1,5 +1,3 @@
-import Game from "../../models/game.js";
-
 const getAll = async (req, res) => {
   try {
     let games = await Game.findAll({
