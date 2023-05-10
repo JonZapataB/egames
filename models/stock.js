@@ -2,7 +2,7 @@
 import connection from "../database.js";
 import Sequelize from "sequelize";
 
-const Stock = connection.define("stocks", {
+const Stock = connection.define("stock", {
     stock: {
         type: Sequelize.INTEGER,
         primaryKey: true,

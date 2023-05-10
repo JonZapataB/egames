@@ -1,6 +1,6 @@
 import connection from "../config/db.js";
-import { Sequelize } from "sequelize";
-
+import Sequelize from "sequelize";
+import Stock from "./stock.js";
 //Description: Model for the game table
 const Game = connection.define("games", {
   idgame: {
@@ -27,3 +27,13 @@ const Game = connection.define("games", {
 });
 
 export default Game;
+
+Game.hasMany(Stock, {
+  foreignKey: "idgame",
+  sourceKey: "idgame",
+});
+
+Stock.belongsTo(Game, {
+  foreignKey: "idgame",
+  targetKey: "idgame",
+});
