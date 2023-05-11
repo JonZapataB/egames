@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   mysql:
     image: mysql:5.6
@@ -10,6 +10,9 @@ services:
     ports:
       - 3311:3306
     volumes:
+      - "./docker/mysql/1egames.sql:/docker-entrypoint-initdb.d/1egames.sql"
+      - "./docker/mysql/2egamesInsertData.sql:/docker-entrypoint-initdb.d/2egamesInsertData.sql"
+      - "./docker/mysql/3egamesStockData.sql:/docker-entrypoint-initdb.d/3egamesStockData.sql"
       - ~/egamesData/mysql:/var/lib/mysql
     networks:
       - egames
@@ -20,13 +23,13 @@ services:
     ports:
       - 3011:3000
     depends_on:
-        - mysql
+      - mysql
     networks:
-        - egames
+      - egames
     volumes:
-        - ./:/usr/src/app
-        - exclude:/usr/src/app/node_modules/
+      - ./:/usr/src/app
+      - exclude:/usr/src/app/node_modules/
 volumes:
   exclude:
 networks:
-  egames: 
+  egames:
