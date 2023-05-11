@@ -1,12 +1,22 @@
+
 import { Router } from "express";
+import userController from "../controller/userController.js";
+
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  //userController.getAll(req, res);
-  res.send("Muestra todos los usuarios");
+router.get("/login", (req, res) => {
+  userController.login(req, res);
 });
 
+router.get("/user/register", (req, res) => {
+  userController.registerForm(req, res);
+});
+
+  router.get("/", (req, res) => {
+  userController.getAll(req, res);
+});
+/*
 router.post("/", (req, res) => {
   res.send("Crea un usuario");
   //.create(req, res);
@@ -15,6 +25,6 @@ router.post("/", (req, res) => {
 router.post("/login", (req, res) => {
   res.send("Esto te logea");
   //.login(req, res);
-});
+});*/
 
-export default router;
+export default router; 
