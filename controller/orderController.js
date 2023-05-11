@@ -1,37 +1,26 @@
-import Order from "../../models/orders.js";
-import Orders_has_stock from "../../models/¡Orders_has_stock.js";
-import Games from "../../models/games.js";
+import Order from "../models/orders.js";
+import Orders_has_stock from "../models/orders_has_stock.js";
+import Games from "../models/games.js";
 
 
-const getAll = async (user) => {
+const getAll = async (req,res) => {
     try {
-        if(user.role === "admin"){
             const orders = await Order.findAll({
                 attributes: ["idorder", "iduser","idstatus", ],
             });
-            return [0, orders];
-        }
-        else{
-            const orders = await Order.findAll({
-                where: {
-                    iduser: user.iduser
-                },
-                attributes: ["idorder", "iduser","idstatus", ],
-            });
-            return [0, orders];
-        }
-
-        
+            res.send(orders);
     } catch (error) {
-        return [1, error];
+        res.status(500).send({
+            message: error.message || "Some error ocurred while retrieving stock.",
+        });
     }
 }; 
 
-const getByUserId = async (iduser) => {
+const getByUserId = async (req,res) => {
     try {
         const order = await Order.findAll({
             where: {
-                iduser: user.iduser
+                iduser:user
             },
             attributes: ["idorder", "iduser","idstatus",  ],
         });
@@ -152,8 +141,6 @@ const deleteGame = async (idorder) => {
     }
 };
 
-orderController.createOrder(10, 1);
- 
 
 export default {
     getAll,
