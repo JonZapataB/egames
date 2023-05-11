@@ -16,14 +16,18 @@ const UserInfo = connection.define('userInfo', {
         type: Sequelize.STRING(45),
         allowNull: false
     },
-    address: {
+    adress: {
         type: Sequelize.STRING(45),
         allowNull: false
     },
-    phone: {
+    phoneNumber: {
         type: Sequelize.INTEGER,
         allowNull: false
-    },
-});
+    }},
+{
+    freezeTableName: true,
+    timestamps: false
+},);
+
 
 export default UserInfo;
