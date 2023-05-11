@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize("egamesSQL", "root", "mi-contraseña", {
+const sequelize = new Sequelize("egames", "root", "mi-contraseña", {
   host: "mysql-egames",
   port: 3306,
   dialect: "mysql",
