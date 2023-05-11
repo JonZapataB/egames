@@ -73,7 +73,7 @@ const getByPlatform = async (req, res) => {
   try {
     let platform = req.params.platform;
     let stock = await Stock.findAll({
-      where: { platform: platform },
+      where: { platform: platform /* .replace(/\s/g, "") */ },
       attributes: ["idgame", "stock", "platform", "price"],
       /* include: [
           {

@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: mi-contraseña
-      MYSQL_DATABASE: egamessql
+      MYSQL_DATABASE: egamesSQL
     ports:
       - 3311:3306
     volumes:
