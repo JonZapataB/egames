@@ -12,4 +12,9 @@ router.get("/:id", (req, res) => {
   //res.send("Mostrar un juego con id " + req.params.id);
 });
 
+router.get("/:platform", (req, res) => {
+  stockController.getByPlatform(req, res);
+  //res.send("Mostrar un juego con id " + req.params.id);
+});
+
 export default router;
