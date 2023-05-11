@@ -7,16 +7,16 @@ const getAll = async (user) => {
     try {
         if(user.role === "admin"){
             const orders = await Order.findAll({
-                attributes: ["idorder", "email_user","date","estado", ],
+                attributes: ["idorder", "iduser","idstatus", ],
             });
             return [0, orders];
         }
         else{
             const orders = await Order.findAll({
                 where: {
-                    email_user: user.email
+                    iduser: user.iduser
                 },
-                attributes: ["idorder", "email_user","date","estado", ],
+                attributes: ["idorder", "iduser","idstatus", ],
             });
             return [0, orders];
         }
@@ -27,13 +27,13 @@ const getAll = async (user) => {
     }
 }; 
 
-const getByUserEmail = async (email) => {
+const getByUserId = async (iduser) => {
     try {
         const order = await Order.findAll({
             where: {
-                email_user: email
+                iduser: user.iduser
             },
-            attributes: ["idorder", "email_user","date","estado", ],
+            attributes: ["idorder", "iduser","idstatus",  ],
         });
         return [0, order];
     } catch (error) {
@@ -41,14 +41,14 @@ const getByUserEmail = async (email) => {
     }
 };
 
-const pendienteByUserEmail = async (email) => {
+const pendienteByUserId = async (Usuario) => {
     try {
         const order = await Order.findOne({
             where: {
-                email_user: email,
-                estado: "pendiente"
+                iduser: Usuario,
+                estado: order.idstatus,
             },
-            attributes: ["idorder", "email_user","date","estado" ],
+            attributes: ["idorder", "iduser","idstatus", ],
         });
         return [0, order];
     } catch (error) {
@@ -59,7 +59,7 @@ const pendienteByUserEmail = async (email) => {
 const getById = async (id) => {
     try {
         const order = await Order.findByPk(id,{ 
-            attributes: ["idorder", "email_user","date","estado", ],
+            attributes: ["idorder", "iduser","idstatus", ],
             include: [
                 {model:Orders_has_stock,
                 attributes: ["cantidad", "idgame"], 
@@ -78,11 +78,11 @@ const getById = async (id) => {
 
 
     
-const createOrder = async (email) => {
+const createOrder = async (Usuario) => {
     try {
         let order = await Order.create({
-            email_user: email,
-            estado: "pendiente",
+            iduser: Usuario,
+            estado: order.idstatus,
             date: new Date()
         });
         return  [0, order];
@@ -93,26 +93,26 @@ const createOrder = async (email) => {
     
  
 
-const addGame = async (email, idgame, cantidad) => {
+const addGame = async (Usuario, idgame, cantidad) => {
     try {
-        let order = await pendienteByUserEmail(email);
+        let order = await pendienteByUserId(Usuario);
         if (order[0] == 1) {
             return order;
         }
         order = order[1];
         if (!order) {
-            order = await createOrder(email);
+            order = await createOrder(Usuario);
             order = order[1];
         }
-        let gameExistente = await Orders_has_stock.findOne({
+        let gameExist = await Orders_has_stock.findOne({
             where: {
                 idorder: order.idorder,
                 idgame: idgame
             }
         });
-        if (gameExistente) {
-            gameExistente.cantidad += cantidad;
-            await gameExistente.save();
+        if (gameExist) {
+            gameExist.cantidad += cantidad;
+            await gameExist.save();
         } else {
             await Orders_has_stock.create({
                 idorder: order.idorder,
@@ -152,7 +152,7 @@ const deleteGame = async (idorder) => {
     }
 };
 
-
+orderController.createOrder(10, 1);
  
 
 export default {
@@ -162,6 +162,6 @@ export default {
     addGame,
     updateOrder,
     deleteGame,
-    getByUserEmail,
-    pendienteByUserEmail
+    getByUserId,
+    pendienteByUserId
 }
