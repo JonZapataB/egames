@@ -3,6 +3,8 @@ import router from "./routes/router.js";
 
 const app = express(); //Creamos una pp de express
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.get("/", (req, res) => {
   res.send("kk kulo pedo pis");
 });
