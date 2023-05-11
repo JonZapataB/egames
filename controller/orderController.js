@@ -27,11 +27,11 @@ const getAll = async (user) => {
     }
 }; 
 
-const getByUserId = async (iduser) => {
+const getByUserId = async (user) => {
     try {
         const order = await Order.findAll({
             where: {
-                iduser: user.iduser
+                iduser:user
             },
             attributes: ["idorder", "iduser","idstatus",  ],
         });
