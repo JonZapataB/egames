@@ -1,6 +1,6 @@
 import User from '../models/users.js';
 import UserInfo from '../models/user_info.js';
-/* import bcrypt from 'bcrypt'; */
+import bcrypt from 'bcrypt';
 const getAll = async (req, res) => {
     try{
         let users = await User.findAll({
@@ -8,7 +8,6 @@ const getAll = async (req, res) => {
             include: [
                 {
                 model: UserInfo,
-                /* attributes: ["name", "lastname", "address", "phone"], */
                 },
             ],
         });
@@ -27,7 +26,6 @@ const getById = async (req, res) => {
             include: [
                 {
                 model: UserInfo,
-                /* attributes: ["name", "lastname", "address", "phone"], */
                 },
             ],
         });
@@ -39,7 +37,7 @@ const getById = async (req, res) => {
     }
 }
 
-/* const login = async (req, res) => {
+const login = async (req, res) => {
     const email = req.body.email;
     let user = await User.findOne({email:email});
     if(!user) {
@@ -53,7 +51,7 @@ const getById = async (req, res) => {
     else {
         res.status(401).send("Contraseña incorrecta");
     }
-} */
+}
 
 const logout = (req,res) => {
     req.logout((err) => {
@@ -64,7 +62,7 @@ const logout = (req,res) => {
         });
 }
                 
-/* 
+
 const create = async (req, res) => {
     try{
         const user = await User.create({
@@ -77,10 +75,28 @@ const create = async (req, res) => {
             iduser: user.iduser,
         });
         res.redirect("/user/login");
-    } catch(error) {
+    }catch(error){
         res.redirect("/user/register?error=El usuario ya existe");
     }
-} */
+}
+
+const updateForm = async (req, res) => {
+    try{
+        let user = await User.findByPk(req.params.id, {
+            attributes: ["iduser", "email", "password"],
+            include: [
+                {
+                model: UserInfo,
+                },
+            ],
+        });
+        res.render("user/update", {user:user});
+    }catch(error){
+        res.status(500).send({
+            message: error.message || "Some error ocurred while retrieving users."
+        });
+    }
+}
 
 const registerForm = (req, res) => {
     const error = req.query.error;
@@ -89,8 +105,9 @@ const registerForm = (req, res) => {
 
 
 export default {
-    /* create,
-    login, */
+    create,
+    updateForm,
+    login,
     getById,
     registerForm,
     getAll,
