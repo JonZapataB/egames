@@ -9,8 +9,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-  //gameController.getById(req, res);
-  res.send("Mostrar un juego con id " + req.params.id);
+  gameController.getById(req, res);
+  //res.send("Mostrar un juego con id " + req.params.id);
 });
 
 router.post(
