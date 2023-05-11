@@ -1,33 +1,36 @@
 //Describe: Model for user info
-import connection from '../config/db.js';
-import Sequelize from 'sequelize';
+import connection from "../config/db.js";
+import Sequelize from "sequelize";
 
-const UserInfo = connection.define('userInfo', {
+const UserInfo = connection.define(
+  "userInfo",
+  {
     iduser: {
-        type: Sequelize.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
     name: {
-        type: Sequelize.STRING(45),
-        allowNull: false
+      type: Sequelize.STRING(45),
+      allowNull: false,
     },
     lastname: {
-        type: Sequelize.STRING(45),
-        allowNull: false
+      type: Sequelize.STRING(45),
+      allowNull: false,
     },
-    adress: {
-        type: Sequelize.STRING(45),
-        allowNull: false
+    address: {
+      type: Sequelize.STRING(45),
+      allowNull: false,
     },
     phoneNumber: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-    }},
-{
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+  },
+  {
     freezeTableName: true,
-    timestamps: false
-},);
-
+    timestamps: false,
+  }
+);
 
 export default UserInfo;
