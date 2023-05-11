@@ -19,7 +19,12 @@ const OrdersHasStock = connection.define("orders_has_stock", {
         type: Sequelize.INTEGER,
         allowNull: false
     }
+},
+{
+    freezeTableName: true,
+    timestamps: false,
 });
+
 
 export default OrdersHasStock;
 
