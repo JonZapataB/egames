@@ -20,6 +20,25 @@ const getAll = async (req, res) => {
     }
 }
 
+const getById = async (req, res) => {
+    try{
+        let user = await User.findByPk(req.params.id, {
+            attributes: ["iduser", "email", "password"],
+            include: [
+                {
+                model: UserInfo,
+                /* attributes: ["name", "lastname", "address", "phone"], */
+                },
+            ],
+        });
+        res.send(user);
+    }catch(error){
+        res.status(500).send({
+            message: error.message || "Some error ocurred while retrieving users."
+        });
+    }
+}
+
 /* const login = async (req, res) => {
     const email = req.body.email;
     let user = await User.findOne({email:email});
@@ -72,6 +91,7 @@ const registerForm = (req, res) => {
 export default {
     /* create,
     login, */
+    getById,
     registerForm,
     getAll,
     logout

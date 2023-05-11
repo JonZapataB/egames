@@ -16,6 +16,11 @@ router.get("/user/register", (req, res) => {
   router.get("/", (req, res) => {
   userController.getAll(req, res);
 });
+
+router.get("/:id", (req, res) => {
+  userController.getById(req, res);
+});
+
 /*
 router.post("/", (req, res) => {
   res.send("Crea un usuario");
