@@ -1,6 +1,6 @@
-import Order from "../../models/orders.js";
-import Orders_has_stock from "../../models/¡Orders_has_stock.js";
-import Games from "../../models/games.js";
+import Order from "../models/orders.js";
+import Orders_has_stock from "../models/orders_has_stock.js";
+import Games from "../models/games.js";
 
 
 const getAll = async (user) => {
@@ -152,8 +152,6 @@ const deleteGame = async (idorder) => {
     }
 };
 
-orderController.createOrder(10, 1);
- 
 
 export default {
     getAll,
