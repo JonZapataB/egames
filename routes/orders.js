@@ -15,12 +15,29 @@ router.post("/", (req, res) => {
     orderController.createOrder(req, res);
 });
 
-router.get("/add/:orderid",(req, res) => {
+router.post("/add/:idorder",(req, res) => {
     orderController.addGame(req, res);
 });
 
-router.get("/delete/:orderid", (req, res) => {
+router.delete("/delete/:idorder", (req, res) => {
     orderController.deleteGame(req, res);
 });
+
+router.post("/cancel/:idorder", (req, res) => {
+    orderController.cancelOrder(req, res);
+});
+
+router.post("/confirm/:idorder", (req, res) => {
+    orderController.confirmOrder(req, res);
+});
+
+router.post("/send/:idorder", (req, res) => {
+    orderController.sendOrder(req, res);
+});
+
+router.post("/receive/:idorder", (req, res) => {
+    orderController.receiveOrder(req, res);
+});
+
 
 export default router;
