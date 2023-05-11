@@ -1,6 +1,7 @@
 import connection from "../config/db.js";
 import Sequelize from "sequelize";
 import Stock from "./stock.js";
+
 //Description: Model for the game table
 const Game = connection.define("games", {
   idgame: {

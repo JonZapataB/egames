@@ -1,16 +1,16 @@
 import { Router } from "express";
-import gameController from "../controller/game/gameController.js";
+import gameController from "../controller/gameController.js";
 
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.send("Muestra todos los juegos");
-  //gameController.getAll(req, res);
+  //res.send("Muestra todos los juegos");
+  gameController.getAll(req, res);
 });
 
 router.get("/:id", (req, res) => {
-  //gameController.getById(req, res);
-  res.send("Mostrar un juego con id " + req.params.id);
+  gameController.getById(req, res);
+  //res.send("Mostrar un juego con id " + req.params.id);
 });
 
 router.post(
