@@ -13,7 +13,7 @@ router.post("/register", (req, res) => {
   userController.create(req,res);
 });
 // ruta para la info del usuario
-router.post("/:id/info", (req, res) => {
+router.get("/:id/info", (req, res) => {
   userController.createUserInfo(req,res);
 });
 // ruta para obtener todos los usuarios
@@ -25,7 +25,7 @@ router.get("/:id", (req, res) => {
   userController.getById(req, res);
 });
 // ruta para editar un usuario
-router.post("/edit/:id", (req, res) => {
+router.get("/:id/edit", (req, res) => {
   userController.updateUser(req,res);
 });
 
