@@ -1,6 +1,6 @@
 import User from '../models/users.js';
 import UserInfo from '../models/user_info.js';
-/* import bcrypt from 'bcrypt'; */
+import bcrypt from 'bcrypt';
 const getAll = async (req, res) => {
     try{
         let users = await User.findAll({
@@ -8,7 +8,6 @@ const getAll = async (req, res) => {
             include: [
                 {
                 model: UserInfo,
-                /* attributes: ["name", "lastname", "address", "phone"], */
                 },
             ],
         });
@@ -27,7 +26,6 @@ const getById = async (req, res) => {
             include: [
                 {
                 model: UserInfo,
-                /* attributes: ["name", "lastname", "address", "phone"], */
                 },
             ],
         });
@@ -39,7 +37,7 @@ const getById = async (req, res) => {
     }
 }
 
-/* const login = async (req, res) => {
+const login = async (req, res) => {
     const email = req.body.email;
     let user = await User.findOne({email:email});
     if(!user) {
@@ -47,16 +45,19 @@ const getById = async (req, res) => {
         return;
     }
     let password= req.body.password;
-    if (await bcrypt.compare(password,user.password)) {
+   /*  if (await bcrypt.compare(password,user.password)) { */// esta linea es para cuando encriptemos las contraseñas
+   if (password == user.password) {
         res.send("Usuario y contraseña correctos");
     }
     else {
         res.status(401).send("Contraseña incorrecta");
     }
-} */
+}
+
+
 
 const logout = (req,res) => {
-    req.logout((err) => {
+    req.logout((err) => {   
         if (err) {
             console.log(err);
         }
@@ -64,35 +65,77 @@ const logout = (req,res) => {
         });
 }
                 
-/* 
+
 const create = async (req, res) => {
     try{
+        const oldUser = await User.findOne({where: {email: req.body.email}});
+        if (oldUser) {
+            res.status(400).send("El usuario ya existe");
+            return;
+        }
+        const password = await bcrypt.hash(req.body.password, 10);
         const user = await User.create({
             email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 10),
+            password: password,
         });
-        const userInfo = await UserInfo.create({
-            name: req.body.name,
-            surname: req.body.surname,
-            iduser: user.iduser,
+        res.send(user);
+    }catch(error){
+        res.status(500).send({
+            message: error.message || "Some error ocurred while retrieving users."
         });
-        res.redirect("/user/login");
-    } catch(error) {
-        res.redirect("/user/register?error=El usuario ya existe");
     }
-} */
-
-const registerForm = (req, res) => {
-    const error = req.query.error;
-    res.render ("user/register", {error:error});
 }
 
+const createUserInfo = async (req, res) => {
+    try{
+        const user = await User.findByPk(req.params.id);
+        if (!user) {
+            res.status(404).send("El usuario no existe");
+            return;
+        }
+        const userInfo = await UserInfo.create({
+            name: req.body.name,
+            lastname: req.body.lastname,
+            address: req.body.address,
+            phoneNumber: req.body.phoneNumber,
+            iduser: req.params.id,
+        });
+        res.send(userInfo);
+    }catch(error){
+        res.status(500).send({
+            message: error.message || "Some error ocurred while retrieving users."
+        });
+    }
+}
+
+const updateUser = async (req, res) => {
+    try{
+        const user = await User.findByPk(req.params.id);
+        if (!user) {
+            res.status(404).send("El usuario no existe");
+            return;
+        }
+        const userInfo = await UserInfo.update({
+            name: req.body.name,
+            lastname: req.body.lastname,
+            address: req.body.address,
+            phoneNumber: req.body.phoneNumber,
+            iduser: req.params.id,
+        });
+        res.send(userInfo);
+    }catch(error){
+        res.status(500).send({
+            message: error.message || "Some error ocurred while retrieving users."
+        });
+    }
+}
 
 export default {
-    /* create,
-    login, */
+    create,
+    createUserInfo,
+    updateUser,
+    login,
     getById,
-    registerForm,
     getAll,
     logout
 }
