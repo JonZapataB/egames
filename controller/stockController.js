@@ -19,10 +19,6 @@ const getAll = async (req, res) => {
         },
       ],
     });
-    stock = stock.map((element) => {
-      element.stock = parseInt(element.stock);
-      return element;
-    });
     res.send(stock);
   } catch (error) {
     res.status(500).send({
@@ -56,10 +52,6 @@ const getById = async (req, res) => {
         message: `Cannot find stock with id=${id}.`,
       });
     } else {
-      stock = stock.map((element) => {
-        element.stock = parseInt(element.stock);
-        return element;
-      });
       res.send(stock);
     }
   } catch (error) {

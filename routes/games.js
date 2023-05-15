@@ -1,9 +1,10 @@
 import { Router } from "express";
 import gameController from "../controller/gameController.js";
+import verifyToken from "../middlewares/jwt.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
+router.get("/", verifyToken, (req, res) => {
   //res.send("Muestra todos los juegos");
   gameController.getAll(req, res);
 });
