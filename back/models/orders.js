@@ -17,4 +17,4 @@ const Order = connection.define('orders', {
     }
 });
 
-export default Order;
+export default Order; 
