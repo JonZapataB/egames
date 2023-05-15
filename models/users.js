@@ -21,6 +21,7 @@ const User = connection.define('users', {
     },
 });
 
+
 export default User;
 //relaciones entre usuarios y user_info
 
@@ -38,3 +39,4 @@ User.hasMany(Orders, {
 Orders.belongsTo(User, {
     foreignKey: 'iduser', targetKey: 'iduser'
 });
+ 
