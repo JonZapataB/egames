@@ -188,7 +188,7 @@ const createOrder = async (iduser) => {
 
 const addGame = async (req,res) => {
     try {
-        let { idgame, quantity } = req.body;
+        let { idgame, quantity,platform } = req.body;
         quantity = parseInt(quantity);
         const { iduser } = req.params;
         if(quantity < 1){
@@ -198,7 +198,8 @@ const addGame = async (req,res) => {
         }
         let stock = await Stock.findOne({
             where: {
-                idgame: idgame
+                idgame: idgame,
+                platform: platform,
             }
         });
         if (stock.stock < quantity) {
@@ -220,7 +221,8 @@ const addGame = async (req,res) => {
         let gameExist = await Orders_has_stock.findOne({
             where: {
                 idorder: order.idorder,
-                idgame: idgame
+                idgame: idgame,
+                platform: platform,
             }
         });
         console.log("gameexits",gameExist);
@@ -231,7 +233,8 @@ const addGame = async (req,res) => {
             await Orders_has_stock.create({
                 idorder: order.idorder,
                 idgame: idgame,
-                quantity: quantity
+                quantity: quantity,
+                platform: platform,
             });
         }     
         stock.stock -= quantity;
@@ -247,7 +250,7 @@ const addGame = async (req,res) => {
 
 const subtractGame = async (req,res) => {
     try {
-        let { idgame, quantity } = req.body;
+        let { idgame, quantity,platform } = req.body;
         quantity = parseInt(quantity);
         const { iduser } = req.params;
         if(quantity < 1){
@@ -271,7 +274,8 @@ const subtractGame = async (req,res) => {
         let gameExist = await Orders_has_stock.findOne({
             where: {
                 idorder: order.idorder,
-                idgame: idgame
+                idgame: idgame,
+                platform: platform,
             }
         });
         if (!gameExist) {
@@ -286,7 +290,8 @@ const subtractGame = async (req,res) => {
         }
         let stock = await Stock.findOne({
             where: {
-                idgame: idgame
+                idgame: idgame,
+                platform: platform,
             }
         });
         stock.stock += quantity;

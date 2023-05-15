@@ -19,6 +19,11 @@ const OrdersHasStock = connection.define("orders_has_stock", {
         type: Sequelize.INTEGER,
         primaryKey: true,
         allowNull: false
+    },
+    platform: {
+        type: Sequelize.STRING(45),
+        allowNull: false,
+        primaryKey: true,
     }
 },
 {
