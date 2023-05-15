@@ -9,9 +9,9 @@ const getAll = async (req,res) => {
             let orders = await Order.findAll({
                 attributes: ["idorder", "iduser","idstatus", ], 
             });
-            let stocks = orders.map(async(order) => {
-                return Orders_has_stock.findAll({
-                    where: {
+            let stocks = orders.map(async(order) => {  //map devuelve un array con los resultados de la funcion
+                return Orders_has_stock.findAll({  
+                    where: {  
                         idorder: order.idorder,
                     },
                     attributes: ["quantity", "idgame"],
@@ -28,8 +28,8 @@ const getAll = async (req,res) => {
                     ],
                 });
             });
-            stocks = await Promise.all(stocks);
-            orders = orders.map((order, index) => {
+            stocks = await Promise.all(stocks);  //Promise.all devuelve una promesa que se cumple cuando todas las promesas en el argumento iterable se han cumplido
+            orders = orders.map((order, index) => { //map devuelve un array con los resultados de la funcion
                 return {
                     ...order.dataValues,
                     stocks: stocks[index],
@@ -247,7 +247,8 @@ const addGame = async (req,res) => {
 
 const subtractGame = async (req,res) => {
     try {
-        const { idgame, quantity } = req.body;
+        let { idgame, quantity } = req.body;
+        quantity = parseInt(quantity);
         const { iduser } = req.params;
         if(quantity < 1){
             return res.status(400).send({
@@ -283,8 +284,20 @@ const subtractGame = async (req,res) => {
                 message: "No hay suficiente cantidad de ese juego en la orden",
             });
         }
+        let stock = await Stock.findOne({
+            where: {
+                idgame: idgame
+            }
+        });
+        stock.stock += quantity;
+        await stock.save();
         gameExist.quantity-= quantity;
+        if (gameExist.quantity === 0) {
+            await gameExist.destroy();
+        } else {
         await gameExist.save();
+        }
+        order = await pendienteByUserId(iduser);
         res.send(order);
     }catch (error) {
         res.status(500).send({
