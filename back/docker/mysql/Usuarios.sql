@@ -6,4 +6,4 @@ INSERT INTO users ( email, password) VALUES
 INSERT INTO userInfo (iduser, name, lastname, address, phoneNumber) VALUES
 ('1','pepe', 'luis', 'Calle de la piruleta Nº 69 2ºIzquierda', 666666666);
 
-select * from users;
+select * from users; 

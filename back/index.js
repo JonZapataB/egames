@@ -1,13 +1,17 @@
 import express from "express"; //IMportamos express
 import router from "./routes/router.js";
+import passport from "passport";
+import cookieParser from "cookie-parser";
 
 const app = express(); //Creamos una pp de express
 
-app.use(express.json()); //Indicamos que vamos a usar json
-app.use(express.urlencoded({ extended: true })); //Indicamos que vamos a usar urlencoded
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
-  res.send("PAGINA INICIO TIENDA DE VIDEOJUEGOS FISICOS");
+  res.send("Hello eComerce");
 });
 
 app.use("/api", router);
