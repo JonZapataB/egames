@@ -1,5 +1,7 @@
+USE egames;
 INSERT INTO status (name) VALUES
-('pendiente'),
+('Pendiente'),
 ('Confirmado'),
 ('Enviado'),
-('Entregado');
+('Entregado'),
+('Cancelado');

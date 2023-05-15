@@ -1,3 +1,4 @@
+USE egames;
 INSERT INTO users ( email, password) VALUES
 ('pepelu@hotmail.com', 1234),
 ('estoyaqui@hotmail.com', 4321);
