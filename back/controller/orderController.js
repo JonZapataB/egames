@@ -242,6 +242,30 @@ const receiveOrder = async (req,res) => {
     res.send(order);
 }
 
+//funcion para quitar el stock de los juegos que se compraron
+const removeStock = async (idorder) => {
+    try {
+        let order = await Orders_has_stock.findAll({ //busco todos los juegos que estan en la orden
+            where: {  //donde el id de la orden sea el que me pasan
+                idorder: idorder  
+            }
+        });
+        for (let i = 0; i < order.length; i++) { //recorro todos los juegos
+            let stock = await Stock.findOne({
+                where: {
+                    idgame: order[i].idgame
+                }
+            });
+            stock.stock -= order[i].stock;  //le resto el stock que se compro
+            await stock.save();
+        }
+        return [null, order];
+    } catch (error) {
+        return [error, null];
+    }
+}
+
+
 export default {
     getAll,
     createOrder,
@@ -254,5 +278,6 @@ export default {
     cancelOrder,
     confirmOrder,
     sendOrder,
-    receiveOrder
+    receiveOrder,
+    removeStock
 }
