@@ -16,7 +16,10 @@ app.get("/", (req, res) => {
 
 app.use("/api", router);
 
+
+
+
 app.listen(3000, () => {
   //INDICAMOS que el servidor escuche en el puerto 3000
-  console.log("Server is running in port 3000");
+  console.log("Server is running in port 3011");
 });

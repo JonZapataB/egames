@@ -1,3 +1,4 @@
+USE egames;
 INSERT INTO games (name, description, release_date, cover) VALUES
 ('Super Mario Odyssey', 'Únete a Mario en una emocionante aventura para rescatar a la Princesa Peach de las garras de Bowser. Explora diversos reinos y disfruta de la jugabilidad innovadora de Nintendo Switch.', '2017-10-27', 'https://m.media-amazon.com/images/I/81drkVN7GRL._AC_SL1500_.jpg'),
 ('The Legend of Zelda: Breath of the Wild', 'Embárcate en una épica aventura en el vasto reino de Hyrule mientras te enfrentas a desafiantes enemigos y resuelves puzles. Descubre un mundo abierto lleno de secretos y maravillas.', '2017-03-03', 'https://m.media-amazon.com/images/I/91jvZUxquKL._AC_SL1500_.jpg'),

@@ -1,3 +1,4 @@
+USE egames;
 INSERT INTO stock (stock, platform, price, idgame)
 VALUES 
 (100, 'Nintendo Switch', 5999, 1),
