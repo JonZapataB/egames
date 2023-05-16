@@ -17,17 +17,19 @@ const OrdersHasStock = connection.define("orders_has_stock", {
     },
     idgame: {
         type: Sequelize.INTEGER,
+        primaryKey: true,
         allowNull: false
+    },
+    platform: {
+        type: Sequelize.STRING(45),
+        allowNull: false,
+        primaryKey: true,
     }
 },
 {
     freezeTableName: true,
     timestamps: false,
 });
-
-
-export default OrdersHasStock;
-
 
 OrdersHasStock.belongsTo(Stock, {
     foreignKey: 'idgame', targetKey: 'idgame'
@@ -44,4 +46,7 @@ Stock.hasMany(OrdersHasStock, {
 Orders.hasMany(OrdersHasStock, {
     foreignKey: 'idorder', sourceKey: 'idorder'
 });
+
+export default OrdersHasStock;
+
 
