@@ -8,9 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
  return (
     <div>
-        <Games />
-        <NavBar />
-        <Orders />
+      <NavBar />
+      <Games />
+      <Orders />
     </div>
  );
 };

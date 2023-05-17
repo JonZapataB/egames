@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
+import "./Games.scss";
 const Games = () => {
   const [data, setData] = useState([]);
 

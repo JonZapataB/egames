@@ -51,6 +51,7 @@ authRouter.post("/login", async (req, res) => {
       res
         .status(401)
         .send("Tienes que logearte con tu cuenta de google o crear una nueva.");
+      return;
     }
 
     let result = await bcrypt.compare(password, user.password);
