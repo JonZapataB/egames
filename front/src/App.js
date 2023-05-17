@@ -4,15 +4,14 @@ import Games from "./components/games/Games";
 import Orders from "./components/orders/Orders";
 import NavBar from "./components/navBar/NavBar";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
- return (
+  return (
     <div>
       <NavBar />
       <Games />
     </div>
- );
+  );
 };
 
 export default App;
-
