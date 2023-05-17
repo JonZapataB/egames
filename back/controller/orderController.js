@@ -49,13 +49,14 @@ const getAll = async (req, res) => {
 
 const getByUserId = async (req,res) => {
     try {
-        const iduser = req.user.id;
+      /* const iduser = 1; */
+        const iduser = req.user.id; 
         let orders = await Order.findAll({
             where: {
                 iduser: iduser,
             },
             attributes: ["idorder", "iduser","idstatus", ], 
-        });
+        });console.log("orders20",orders)
         let stocks = orders.map(async(order) => {
             return Orders_has_stock.findAll({
                 where: {
@@ -131,7 +132,8 @@ const pendienteByUserId = async (iduser) => {
 
 const pendienteByUserIdApi = async (req,res) => {
     try {
-        const iduser = req.user.id;
+        /* const iduser = req.user.id; */
+        const iduser = 1;
         const [error,order]= await pendienteByUserId(iduser);
         if(error){
             res.status(500).send({
@@ -195,7 +197,8 @@ const addGame = async (req,res) => {
     try {
         let { idgame, quantity,platform } = req.body;
         quantity = parseInt(quantity);
-        const iduser = req.user.id;
+        const { iduser } = req.params;
+        /* const iduser = req.user.id; */
         if(quantity < 1){
             return res.status(400).send({
                 message: "La cantidad debe ser mayor a 0",
@@ -223,6 +226,7 @@ const addGame = async (req,res) => {
         order = order[1];
         if (!order) {
             order = await createOrder(iduser);
+            console.log("order1",order)
             order = order[1];
         }
         console.log('order',order)

@@ -6,7 +6,7 @@ const Orders = () => {
     const [data, setData] = useState([]);
 
     const getData = async () => {
-        const response = await Axios.get(`http://localhost:3011/api/orders`);
+        const response = await Axios.get('http://localhost:3011/api/orders/user/history',{withCredentials:true});
         console.log(response);
         setData(response.data);
     };
