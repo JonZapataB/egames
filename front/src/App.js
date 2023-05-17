@@ -5,7 +5,7 @@ const App = () => {
   const [data, setData] = useState([]);
 
   const getData = async () => {
-    const response = await Axios.get("http://localhost:3011/api/users");
+    const response = await Axios.get("http://localhost:3011/");
     console.log(response);
     setData(response.data);
   };
@@ -14,8 +14,7 @@ const App = () => {
     getData();
   }, []);
 
-  if (data.length > 0) return <div>{data[0].email}</div>;
-  else return <div>Cargando</div>;
+  return <div>Cargando</div>;
 };
 
 export default App;
