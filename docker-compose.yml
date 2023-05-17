@@ -17,7 +17,7 @@ services:
     networks:
       - egames
   node:
-    build: .
+    build: ./back
     container_name: node-egames
     restart: always
     ports:
@@ -27,8 +27,20 @@ services:
     networks:
       - egames
     volumes:
-      - ./:/usr/src/app
+      - ./back:/usr/src/app
       - exclude:/usr/src/app/node_modules/
+  react:
+    build: ./front
+    container_name: react-egames
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - node
+    networks:
+      - egames
+    volumes:
+      - ./front:/usr/src/app
 volumes:
   exclude:
 networks:
