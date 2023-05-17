@@ -12,7 +12,7 @@ const Games = () => {
   };
 
   const sortByReleaseDate = (games) => {
-    const newGames = [...games]
+    const newGames = [...games];
     return newGames.sort((a, b) => {
       const dateA = new Date(a.release_date);
       const dateB = new Date(b.release_date);
@@ -21,7 +21,7 @@ const Games = () => {
   };
 
   const sortByName = (games) => {
-    const newGames = [...games]
+    const newGames = [...games];
     return newGames.sort((a, b) => {
       const nameA = a.name.toUpperCase();
       const nameB = b.name.toUpperCase();
@@ -31,28 +31,24 @@ const Games = () => {
     });
   };
 
-
-  
-
   useEffect(() => {
     getData();
   }, []);
-  if (data.length > 0) 
-  return (
-    <div>
-      
+  if (data.length > 0)
+    return (
+      <div>
         <div>
           <DatesGameCarousel data={sortByReleaseDate(data)} />
-            {sortByName(data).map((game) => (
-                <article key={game.idgame}>
-                    <h2>{game.name}</h2>
-                    <img src={game.cover} alt={game.name} />
-                    <p>{game.description}</p>
-                    <p>{game.release_date}</p>
-                </article>
-            ))}
+          {sortByName(data).map((game) => (
+            <article key={game.idgame}>
+              <h2>{game.name}</h2>
+              <img src={game.cover} alt={game.name} />
+              <p>{game.description}</p>
+              <p>{game.release_date}</p>
+            </article>
+          ))}
         </div>
-    </div>
+      </div>
     );
   else return <div>Cargando</div>;
 };
