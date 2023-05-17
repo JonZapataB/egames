@@ -33,7 +33,7 @@ authRouter.get(
       },
       process.env.TOKEN_SECRET
     );
-    res.cookie("access_token", token).send("Login successfull!");
+    res.cookie("access_token", token).redirect("http://localhost:3000");
   }
 );
 
