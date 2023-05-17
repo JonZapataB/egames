@@ -16,8 +16,6 @@ const DatesGameCarousel = ({ data }) => {
                   className="d-block w-100"
                 />
                 <Carousel.Caption>
-                  <h2>{game.name}</h2>
-                  <p>{game.description}</p>
                   <p>{game.release_date}</p>
                 </Carousel.Caption>
               </Carousel.Item>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
+import GameDescription from "./GameDescription";
 import "./Games.scss";
 const Games = () => {
   const [data, setData] = useState([]);
@@ -43,8 +44,14 @@ const Games = () => {
             <article key={game.idgame}>
               <h2>{game.name}</h2>
               <img src={game.cover} alt={game.name} />
-              <p>{game.description}</p>
-              <p>{game.release_date}</p>
+              <div>
+                {game.stocks.map((element) => (
+                  <div>
+                    <p>{element.platform}</p>
+                    <p>{element.price / 100}€</p>
+                  </div>
+                ))}
+              </div>
             </article>
           ))}
         </div>
