@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import "./Login.scss";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
   const getData = async (email, password) => {
     try {
@@ -15,8 +16,7 @@ const Login = () => {
           password,
         }
       );
-      console.log("Miaumiau", response.data);
-      setErrorMessage(response.data);
+      goTo("/");
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data);
@@ -29,6 +29,10 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     getData(email, password);
+  };
+
+  const goTo = (url) => {
+    navigate(url);
   };
 
   return (
@@ -45,9 +49,7 @@ const Login = () => {
         <label htmlFor="password">Password </label>
         <input type="password" name="password" id="password" />
         <br />
-        <Link as={Link} to="/">
-          <button>Iniciar sesión</button>
-        </Link>
+        <button>Iniciar sesión</button>
       </form>
     </div>
   );

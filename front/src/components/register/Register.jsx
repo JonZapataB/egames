@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Axios from "axios";
 import "./Register.scss";
@@ -8,6 +8,7 @@ const Register = () => {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [requestError, setRequestError] = useState("");
+  const navigate = useNavigate();
 
   const getData = async (email, password) => {
     try {
@@ -18,6 +19,8 @@ const Register = () => {
           password,
         }
       );
+      setRequestError("");
+      goTo("/login");
     } catch (error) {
       if (error.response) {
         setRequestError(error.response.data);
@@ -60,6 +63,10 @@ const Register = () => {
     return emailRegex.test(email);
   };
 
+  const goTo = (url) => {
+    navigate(url);
+  };
+
   return (
     <div>
       <br />
@@ -73,9 +80,7 @@ const Register = () => {
         <label htmlFor="password">Password {errorPassword}</label>
         <input type="password" name="password" id="password" />
         <br />
-        <Link as={Link} to="/login">
-          <button type="submit">Registrarse</button>
-        </Link>
+        <button type="submit">Registrarse</button>
       </form>
       <p>{requestError}</p>
       <a href="http://localhost:3011/api/auth/google">Registrarse con Google</a>
