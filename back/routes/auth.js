@@ -44,7 +44,6 @@ authRouter.post("/login", async (req, res) => {
     let user = await User.findOne({ where: { email: email } });
     if (!user) {
       res.status(400).send("Usuario no encontrado");
-      return;
     }
 
     if (user.isGoogle === 1) {
