@@ -4,7 +4,7 @@ import verifyToken from "../middlewares/jwt.js";
 
 const router = Router();
 
-router.get("/", verifyToken, (req, res) => {
+router.get("/", (req, res) => {
   //res.send("Muestra todos los juegos");
   gameController.getAll(req, res);
 });
