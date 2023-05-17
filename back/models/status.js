@@ -13,7 +13,12 @@ const Status = connection.define("status", {
         type: Sequelize.STRING(45),
         allowNull: false
     }
-});
+},
+{
+    freezeTableName: true,
+    timestamps: false,
+  });
+
 
 
 export default Status;

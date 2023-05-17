@@ -2,12 +2,18 @@ import Order from "../models/orders.js";
 import Orders_has_stock from "../models/orders_has_stock.js";
 import Games from "../models/games.js";
 import Stock from "../models/stock.js";
+import Status from "../models/status.js";
 
 
 const getAll = async (req,res) => {
     try {
             let orders = await Order.findAll({
                 attributes: ["idorder", "iduser","idstatus", ], 
+                include: [
+                    {model:Status,
+                    attributes: ["name",],
+                    },
+                ],
             });
             let stocks = orders.map(async(order) => {  //map devuelve un array con los resultados de la funcion
                 return Orders_has_stock.findAll({  
@@ -46,7 +52,7 @@ const getAll = async (req,res) => {
 
 const getByUserId = async (req,res) => {
     try {
-        const { iduser } = req.params;
+        const { iduser } = req.user.id;
         let orders = await Order.findAll({
             where: {
                 iduser: iduser,
@@ -98,6 +104,9 @@ const pendienteByUserId = async (iduser) => {
             attributes: ["idorder", "iduser","idstatus", ],
             
         });
+        if (!order) {
+            return [null,null];
+        }
         let stocks = await Orders_has_stock.findAll({
                 where: {
                     idorder: order.idorder,
@@ -125,7 +134,7 @@ const pendienteByUserId = async (iduser) => {
 
 const pendienteByUserIdApi = async (req,res) => {
     try {
-        const { iduser } = req.params;
+        const { iduser } = req.user.id;
         const [error,order]= await pendienteByUserId(iduser);
         if(error){
             res.status(500).send({
@@ -190,7 +199,7 @@ const addGame = async (req,res) => {
     try {
         let { idgame, quantity,platform } = req.body;
         quantity = parseInt(quantity);
-        const { iduser } = req.params;
+        const { iduser } = req.user.id;
         if(quantity < 1){
             return res.status(400).send({
                 message: "La cantidad debe ser mayor a 0",
@@ -207,7 +216,9 @@ const addGame = async (req,res) => {
                 message: "No hay suficiente stock",
             });
         }
+        console.log("haz algo");
         let order = await pendienteByUserId(iduser);
+        console.log("order0",order);
         if (order[0]) {
             return res.status(500).send({
                 message: order[0],
@@ -218,6 +229,7 @@ const addGame = async (req,res) => {
             order = await createOrder(iduser);
             order = order[1];
         }
+        console.log('order',order)
         let gameExist = await Orders_has_stock.findOne({
             where: {
                 idorder: order.idorder,
@@ -252,7 +264,7 @@ const subtractGame = async (req,res) => {
     try {
         let { idgame, quantity,platform } = req.body;
         quantity = parseInt(quantity);
-        const { iduser } = req.params;
+const { iduser } = req.user.id;
         if(quantity < 1){
             return res.status(400).send({
                 message: "La cantidad debe ser mayor a 0",
