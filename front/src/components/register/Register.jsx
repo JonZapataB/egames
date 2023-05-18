@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../navBar/NavBar";
 
 import Axios from "axios";
 import "./Register.scss";
@@ -69,6 +70,7 @@ const Register = () => {
 
   return (
     <div>
+      <NavBar></NavBar>
       <br />
       <h1>Registrate</h1>
       <br />

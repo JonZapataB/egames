@@ -7,13 +7,14 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import {HiMenu} from 'react-icons/hi';
 import {VscAccount} from "react-icons/vsc";
 import {GrCart} from "react-icons/gr";
+import { Link } from 'react-router-dom';
 
 function NavScrollExample() {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
       <NavDropdown title={<HiMenu/>} id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Nintendo Switch</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to='Nintendo'>Nintendo Switch</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Xbox One</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Xbox Series X</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Play Station 4</NavDropdown.Item>
@@ -23,7 +24,7 @@ function NavScrollExample() {
                 Sobre Nosotros
               </NavDropdown.Item>
             </NavDropdown>
-        <Navbar.Brand href="#">eEgames</Navbar.Brand>
+        <Navbar.Brand as={Link} to='/'>eGames</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -31,8 +32,8 @@ function NavScrollExample() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1"><VscAccount/></Nav.Link>
-            <Nav.Link href="#action2"><GrCart/></Nav.Link>
+            <Nav.Link as={Link} to='/register'><VscAccount/></Nav.Link>
+            <Nav.Link as={Link} to='/orders'><GrCart/></Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control

@@ -2,23 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Register from "../components/register/Register";
 import Login from "../components/login/Login";
+import Orders from "../components/orders/Orders";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
     children: [
-      /* {
-        path: "/prediction",
-        element: <Prediction></Prediction>,
-        children: [
-          {
-            path: ":id",
-            element: <Prediction></Prediction>,
-          },
-        ],
-      },
-      {
+      
+      /*{
         path: "beaches",
         element: <Beaches></Beaches>,
         children: [
@@ -37,6 +29,10 @@ const Router = createBrowserRouter([
   {
     path: "/login",
     element: <Login></Login>,
+  },
+  {
+    path: "/orders",
+    element: <Orders></Orders>,
   },
 ]);
 

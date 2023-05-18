@@ -1,5 +1,6 @@
 import { Router } from "express";
 import orderController from "../controller/orderController.js";
+import verifyToken from "../middlewares/jwt.js";
 
 const router = Router();
 
@@ -7,11 +8,11 @@ router.get("/", (req, res) => {
   orderController.getAll(req, res);
 });
 
-router.get("/user/:iduser", (req, res) => {
+router.get("/user", (req, res) => {
   orderController.pendienteByUserIdApi(req, res);
 });
 
-router.get("/user/history", (req, res) => {
+router.get("/user/history",verifyToken, (req, res) => {
   orderController.getByUserId(req, res);
 });
 
