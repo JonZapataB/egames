@@ -1,2 +1,48 @@
 img{
+    width: 40%;
+    height: 40%;
+}
+
+.carousel img{
+    width: 80%;
+    height: 900px;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    /* mix-blend-mode: color-burn; */
+}
+
+.boxGames{
+    display: grid;
+    grid-template-columns: repeat(4, 10fr);
+    margin: 50px;
+}
+  
+.juegos {
+    flex-basis: 25%;
+    margin-bottom: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.juegos:hover{
+    transform: scale(1.1);
+    transition: transform 0.5s;
+    
+}
+  
+  .juegos img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  
+
+
+
+.textoC{
+    background-color: rgba(114, 114, 114, 0.5);
 }

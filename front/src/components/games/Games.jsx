@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
 import "./Games.scss";
+import NavBar from "../navBar/NavBar";
 const Games = () => {
   const [data, setData] = useState([]);
 
@@ -40,19 +41,21 @@ const Games = () => {
   if (data.length > 0) 
   return (
     <div>
-      
-        <div>
-          <DatesGameCarousel data={sortByReleaseDate(data)} />
+      <NavBar></NavBar>
+      <DatesGameCarousel data={sortByReleaseDate(data)} classname='carousel' />
+      <div className="boxGames">
             {sortByName(data).map((game) => (
-                <article key={game.idgame}>
+              <div className="caja">
+                <article className='juegos'key={game.idgame}>
                     <h2>{game.name}</h2>
                     <img src={game.cover} alt={game.name} />
                     <p>{game.description}</p>
                     <p>{game.release_date}</p>
                 </article>
+              </div>
             ))}
         </div>
-    </div>
+      </div>
     );
   else return <div>Cargando</div>;
 };

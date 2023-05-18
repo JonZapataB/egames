@@ -52,3 +52,11 @@ VALUES
 (100, 'Xbox Series X', 1999, 42),
 (100, 'Xbox Series X', 6999, 43),
 (100, 'Xbox Series X', 2499, 44);
+
+USE egames;
+INSERT INTO status (name) VALUES
+('Pendiente'),
+('Confirmado'),
+('Enviado'),
+('Entregado'),
+('Cancelado');

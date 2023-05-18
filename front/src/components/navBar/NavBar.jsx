@@ -8,10 +8,11 @@ import {HiMenu} from 'react-icons/hi';
 import {VscAccount} from "react-icons/vsc";
 import {GrCart} from "react-icons/gr";
 import { Link } from 'react-router-dom';
+import './NavBar.scss';
 
 function NavScrollExample() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar className='barra' bg="light" expand="lg">
       <Container fluid>
       <NavDropdown title={<HiMenu/>} id="navbarScrollingDropdown">
               <NavDropdown.Item as={Link} to='Nintendo'>Nintendo Switch</NavDropdown.Item>
