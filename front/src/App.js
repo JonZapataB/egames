@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import Games from "./components/games/Games";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
- return (
+  return (
     <div>
       <Games />
     </div>
- );
+  );
 };
 
 export default App;
-

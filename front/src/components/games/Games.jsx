@@ -1,10 +1,26 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
+import GamesByPlatform from "./GamesByPlatform";
+import GameDescription from "./GameDescription";
 import "./Games.scss";
 import NavBar from "../navBar/NavBar";
 const Games = () => {
   const [data, setData] = useState([]);
+  const [show, setShow] = useState(false);
+  const [game, setGame] = useState(null);
+
+  const handleSelect = (game) => {
+    console.log(game);
+    setGame(game);
+    handleShow();
+  };
+
+  const handleClose = () => {
+    setGame(null);
+    setShow(false);
+  };
+  const handleShow = () => setShow(true);
 
   const getData = async () => {
     const response = await Axios.get("http://localhost:3011/api/games");
@@ -13,7 +29,7 @@ const Games = () => {
   };
 
   const sortByReleaseDate = (games) => {
-    const newGames = [...games]
+    const newGames = [...games];
     return newGames.sort((a, b) => {
       const dateA = new Date(a.release_date);
       const dateB = new Date(b.release_date);
@@ -22,7 +38,7 @@ const Games = () => {
   };
 
   const sortByName = (games) => {
-    const newGames = [...games]
+    const newGames = [...games];
     return newGames.sort((a, b) => {
       const nameA = a.name.toUpperCase();
       const nameB = b.name.toUpperCase();
@@ -32,8 +48,25 @@ const Games = () => {
     });
   };
 
+  const sortByPrice = (games) => {
+    const newGames = [...games];
+    return newGames.sort((a, b) => {
+      const priceA = a.stocks[0].price;
+      const priceB = b.stocks[0].price;
+      return priceA - priceB;
+    });
+  };
 
-  
+  const sortByPlatform = (games) => {
+    const newGames = [...games];
+    return newGames.sort((a, b) => {
+      const platformA = a.stocks[0].platform.toUpperCase();
+      const platformB = b.stocks[0].platform.toUpperCase();
+      if (platformA < platformB) return -1;
+      else if (platformA > platformB) return 1;
+      else return 0;
+    });
+  };
 
   useEffect(() => {
     getData();
@@ -41,18 +74,16 @@ const Games = () => {
   if (data.length > 0) 
   return (
     <div>
-      <NavBar></NavBar>
-      <DatesGameCarousel data={sortByReleaseDate(data)} classname='carousel' />
-      <div className="boxGames">
+      
+        <div>
+          <DatesGameCarousel data={sortByReleaseDate(data)} />
             {sortByName(data).map((game) => (
-              <div className="caja">
-                <article className='juegos'key={game.idgame}>
+                <article key={game.idgame}>
                     <h2>{game.name}</h2>
                     <img src={game.cover} alt={game.name} />
                     <p>{game.description}</p>
                     <p>{game.release_date}</p>
                 </article>
-              </div>
             ))}
         </div>
       </div>
