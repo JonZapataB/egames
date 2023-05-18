@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import Axios from "axios";
 import "./Login.scss";
 import NavBar from "../navBar/NavBar";
@@ -13,7 +13,7 @@ const Login = () => {
     const token = searchParams.get("token");
     const id = searchParams.get("id");
     if (token) {
-      localStorage.setItem("infoUser", JSON.stringify({ token,id}));
+      localStorage.setItem("infoUser", JSON.stringify({ token, id }));
       setSearchParams("");
       navigate("/");
     }
@@ -28,7 +28,7 @@ const Login = () => {
           password,
         }
       );
-      /* goTo("/"); */
+      goTo("/");
       console.log(response);
       localStorage.setItem("infoUser", JSON.stringify(response.data));
     } catch (error) {
@@ -66,6 +66,11 @@ const Login = () => {
         <br />
         <button>Iniciar sesión</button>
       </form>
+      <a href="http://localhost:3011/api/auth/google">
+        Iniciar sesión con Google
+      </a>
+      <br />
+      <Link to="/register">¿No tienes cuenta? ¡Pues créate una!</Link>
     </div>
   );
 };
