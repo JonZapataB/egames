@@ -33,7 +33,7 @@ authRouter.get(
       },
       process.env.TOKEN_SECRET
     );
-    res.cookie("access_token", token).redirect("http://localhost:3000");
+    res.redirect(`http://localhost:3000/login?token=${token}&id=${user.iduser}`);
   }
 );
 
@@ -68,7 +68,7 @@ authRouter.post("/login", async (req, res) => {
       },
       process.env.TOKEN_SECRET
     );
-    res.cookie("access_token", token).send("Login successfull!");
+    res.send({email: user.email, token: token, id: user.iduser});
   } catch (error) {
     res.status(500).send("Error al iniciar sesión");
   }

@@ -56,6 +56,11 @@ const getByUserId = async (req,res) => {
                 iduser: iduser,
             },
             attributes: ["idorder", "iduser","idstatus", ], 
+            include: [
+              {model:Status,
+              attributes: ["name",],
+              },
+          ],
         });console.log("orders20",orders)
         let stocks = orders.map(async(order) => {
             return Orders_has_stock.findAll({
@@ -132,8 +137,7 @@ const pendienteByUserId = async (iduser) => {
 
 const pendienteByUserIdApi = async (req,res) => {
     try {
-        /* const iduser = req.user.id; */
-        const iduser = 1;
+        const iduser = req.user.id;
         const [error,order]= await pendienteByUserId(iduser);
         if(error){
             res.status(500).send({

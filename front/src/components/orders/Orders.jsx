@@ -1,12 +1,21 @@
 //mostrar control de ordenes
 import React, {useEffect,useState} from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
+import NavBar from "../navBar/NavBar";
 
 const Orders = () => {
     const [data, setData] = useState([]);
-
+    const navigate = useNavigate();
     const getData = async () => {
-        const response = await Axios.get('http://localhost:3011/api/orders/user/history',{withCredentials:true});
+        const infoUser = localStorage.getItem("infoUser");
+        console.log("infoUser", infoUser);
+        if(!infoUser){ 
+            navigate('/login')
+            return;
+        };
+        const token = JSON.parse(infoUser).token;
+        const response = await Axios.get('http://localhost:3011/api/orders/user/history', {headers: {"x-access-token": token}});
         console.log(response);
         setData(response.data);
     };
@@ -28,7 +37,9 @@ const Orders = () => {
 
 
     if (data.length > 0) return ( 
+        
         <di>
+            <NavBar></NavBar>
             {data.map((order) => (
                 <article key={order.idorder}>
                     <h2>Order</h2>

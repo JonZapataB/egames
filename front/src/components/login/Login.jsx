@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Axios from "axios";
 import "./Login.scss";
+import NavBar from "../navBar/NavBar";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const token = searchParams.get("token");
+    const id = searchParams.get("id");
+    if (token) {
+      localStorage.setItem("infoUser", JSON.stringify({ token,id}));
+      setSearchParams("");
+      navigate("/");
+    }
+  });
 
   const getData = async (email, password) => {
     try {
@@ -16,7 +28,9 @@ const Login = () => {
           password,
         }
       );
-      goTo("/");
+      /* goTo("/"); */
+      console.log(response);
+      localStorage.setItem("infoUser", JSON.stringify(response.data));
     } catch (error) {
       if (error.response) {
         setErrorMessage(error.response.data);
@@ -37,6 +51,7 @@ const Login = () => {
 
   return (
     <div>
+      <NavBar></NavBar>
       <br />
       <h1>Login</h1>
       <br />
