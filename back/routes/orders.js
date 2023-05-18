@@ -12,7 +12,7 @@ router.get("/user", (req, res) => {
   orderController.pendienteByUserIdApi(req, res);
 });
 
-router.get("/user/history",verifyToken, (req, res) => {
+router.get("/user/history", verifyToken, (req, res) => {
   orderController.getByUserId(req, res);
 });
 
@@ -20,7 +20,7 @@ router.post("/", (req, res) => {
   orderController.createOrder(req, res);
 });
 
-router.post("/user/:iduser/add", (req, res) => {
+router.post("/user/add", verifyToken, (req, res) => {
   orderController.addGame(req, res);
 });
 
