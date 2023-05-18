@@ -1,7 +1,33 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const GameDescription = ({ game, show, handleClose }) => {
+  const navigate = useNavigate();
+  const handleAddToCart = async (platform) => {
+    try {
+      const idgame = game.idgame;
+      const quantity = 1;
+      const infoUser = localStorage.getItem("infoUser");
+      console.log("infoUser", infoUser);
+      if (!infoUser) {
+        navigate("/login");
+        return;
+      }
+      const token = JSON.parse(infoUser).token;
+      const response = await axios.post(
+        "http://localhost:3011/api/orders/user/add",
+        { idgame, quantity, platform },
+        {
+          headers: { "x-access-token": token },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div
       className="modal show"
@@ -14,6 +40,7 @@ const GameDescription = ({ game, show, handleClose }) => {
           </Modal.Header>
           <Modal.Body>
             <article>
+              <img src={game.cover} alt={game.name} />
               <p>{game.release_date}</p>
               <p>{game.description}</p>
               <div>
@@ -21,6 +48,9 @@ const GameDescription = ({ game, show, handleClose }) => {
                   <div>
                     <p>{element.platform}</p>
                     <p>{element.price / 100}€</p>
+                    <button onClick={() => handleAddToCart(element.platform)}>
+                      Añadir al carrito
+                    </button>
                   </div>
                 ))}
               </div>

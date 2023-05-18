@@ -8,11 +8,7 @@ const getAll = async (req, res) => {
   try {
     let orders = await Order.findAll({
       attributes: ["idorder", "iduser", "idstatus"],
-                include: [
-                    {model:Status,
-                    attributes: ["name",],
-                    },
-                ],
+      include: [{ model: Status, attributes: ["name"] }],
     });
     let stocks = orders.map(async (order) => {
       //map devuelve un array con los resultados de la funcion
@@ -47,111 +43,101 @@ const getAll = async (req, res) => {
   }
 };
 
-const getByUserId = async (req,res) => {
-    try {
-      /* const iduser = 1; */
-        const iduser = req.user.id; 
-        let orders = await Order.findAll({
-            where: {
-                iduser: iduser,
-            },
-            attributes: ["idorder", "iduser","idstatus", ], 
-            include: [
-              {model:Status,
-              attributes: ["name",],
-              },
-          ],
-        });console.log("orders20",orders)
-        let stocks = orders.map(async(order) => {
-            return Orders_has_stock.findAll({
-                where: {
-                    idorder: order.idorder,
-                },
-                attributes: ["quantity", "idgame"],
-                include: [
-                    {
-                        model: Stock,
-                        attributes: ["price","platform" ],
-                        include: [
-                            {model: Games,
-                            attributes: ["name",],
-                            }
-                        ]
-                    },
-                ],
-            });
-        });
-        stocks = await Promise.all(stocks);
-        orders = orders.map((order, index) => {
-            return {
-                ...order.dataValues,
-                stocks: stocks[index],
-            };
-        });
-        
-        res.send(orders);
-    } catch (error) {
-        res.status(500).send({
-            message: error.message || "Some error ocurred while retrieving stock.",
-        });
-    }
+const getByUserId = async (req, res) => {
+  try {
+    /* const iduser = 1; */
+    const iduser = req.user.id;
+    let orders = await Order.findAll({
+      where: {
+        iduser: iduser,
+      },
+      attributes: ["idorder", "iduser", "idstatus"],
+      include: [{ model: Status, attributes: ["name"] }],
+    });
+    console.log("orders20", orders);
+    let stocks = orders.map(async (order) => {
+      return Orders_has_stock.findAll({
+        where: {
+          idorder: order.idorder,
+        },
+        attributes: ["quantity", "idgame"],
+        include: [
+          {
+            model: Stock,
+            attributes: ["price", "platform"],
+            include: [{ model: Games, attributes: ["name"] }],
+          },
+        ],
+      });
+    });
+    stocks = await Promise.all(stocks);
+    orders = orders.map((order, index) => {
+      return {
+        ...order.dataValues,
+        stocks: stocks[index],
+      };
+    });
+
+    res.send(orders);
+  } catch (error) {
+    res.status(500).send({
+      message: error.message || "Some error ocurred while retrieving stock.",
+    });
+  }
 };
 
 const pendienteByUserId = async (iduser) => {
-    try {
-        const order = await Order.findOne({
-            where: {
-                iduser: iduser,
-                idstatus: 1,
-            },
-            attributes: ["idorder", "iduser","idstatus", ],
-            
-        });
-        if (!order) {
-            return [null,null];
-        }
-        let stocks = await Orders_has_stock.findAll({
-                where: {
-                    idorder: order.idorder,
-                },
-                attributes: ["quantity", "idgame"],
-                include: [
-                    {
-                        model: Stock,
-                        attributes: ["price","platform" ],
-                        include: [
-                            {model: Games,
-                            attributes: ["name",],
-                            }
-                        ]
-                    },
-                ],
-            });
-        order.dataValues.stocks = stocks;
-    
-        return [null,order];
-    } catch (error) {
-        return [error.message || "Some error ocurred while retrieving stock.",null];
+  try {
+    const order = await Order.findOne({
+      where: {
+        iduser: iduser,
+        idstatus: 1,
+      },
+      attributes: ["idorder", "iduser", "idstatus"],
+    });
+    if (!order) {
+      return [null, null];
     }
+    let stocks = await Orders_has_stock.findAll({
+      where: {
+        idorder: order.idorder,
+      },
+      attributes: ["quantity", "idgame"],
+      include: [
+        {
+          model: Stock,
+          attributes: ["price", "platform"],
+          include: [{ model: Games, attributes: ["name"] }],
+        },
+      ],
+    });
+    order.dataValues.stocks = stocks;
+
+    return [null, order];
+  } catch (error) {
+    return [
+      error.message || "Some error ocurred while retrieving stock.",
+      null,
+    ];
+  }
 };
 
-const pendienteByUserIdApi = async (req,res) => {
-    try {
-        const iduser = req.user.id;
-        const [error,order]= await pendienteByUserId(iduser);
-        if(error){
-            res.status(500).send({
-                message: error,
-            });
-        }
-        res.send(order);
+const pendienteByUserIdApi = async (req, res) => {
+  try {
+    const iduser = req.user.id;
+    const [error, order] = await pendienteByUserId(iduser);
+    if (error) {
+      res.status(500).send({
+        message: error,
+      });
     }
-    catch (error) {
-        res.status(500).send({
-            message: error.message || "Some error ocurred while retrieving stock.",
-        });
-    }
-}
+    res.send(order);
+  } catch (error) {
+    res.status(500).send({
+      message: error.message || "Some error ocurred while retrieving stock.",
+    });
+  }
+};
 
 const getById = async (req, res) => {
   try {
@@ -194,86 +180,84 @@ const createOrder = async (iduser) => {
     ];
   }
 };
-    
- 
 
-const addGame = async (req,res) => {
-    try {
-        let { idgame, quantity,platform } = req.body;
-        quantity = parseInt(quantity);
-        const { iduser } = req.params;
-        /* const iduser = req.user.id; */
-        if(quantity < 1){
-            return res.status(400).send({
-                message: "La cantidad debe ser mayor a 0",
-            });
-        }
-        let stock = await Stock.findOne({
-            where: {
-                idgame: idgame,
-                platform: platform,
-            }
-        });
-        if (stock.stock < quantity) {
-            return res.status(400).send({
-                message: "No hay suficiente stock",
-            });
-        }
-        console.log("haz algo");
-        let order = await pendienteByUserId(iduser);
-        console.log("order0",order);
-        if (order[0]) {
-            return res.status(500).send({
-                message: order[0],
-            });
-        }
-        order = order[1];
-        if (!order) {
-            order = await createOrder(iduser);
-            console.log("order1",order)
-            order = order[1];
-        }
-        console.log('order',order)
-        let gameExist = await Orders_has_stock.findOne({
-            where: {
-                idorder: order.idorder,
-                idgame: idgame,
-                platform: platform,
-            }
-        });
-        console.log("gameexits",gameExist);
-        if (gameExist) {
-            gameExist.quantity+= quantity;
-            await gameExist.save();
-        } else {
-            await Orders_has_stock.create({
-                idorder: order.idorder,
-                idgame: idgame,
-                quantity: quantity,
-                platform: platform,
-            });
-        }     
-        stock.stock -= quantity;
-        await stock.save(); 
-        order = await pendienteByUserId(iduser); 
-        res.send(order);
-    } catch (error) {
-        res.status(500).send({
-            message: error.message || "Some error ocurred while retrieving stock.",
-        });
+const addGame = async (req, res) => {
+  try {
+    let { idgame, quantity, platform } = req.body;
+    quantity = parseInt(quantity);
+    /* const { iduser } = req.params; */
+    const iduser = req.user.id;
+    if (quantity < 1) {
+      return res.status(400).send({
+        message: "La cantidad debe ser mayor a 0",
+      });
     }
+    let stock = await Stock.findOne({
+      where: {
+        idgame: idgame,
+        platform: platform,
+      },
+    });
+    if (stock.stock < quantity) {
+      return res.status(400).send({
+        message: "No hay suficiente stock",
+      });
+    }
+    console.log("haz algo");
+    let order = await pendienteByUserId(iduser);
+    console.log("order0", order);
+    if (order[0]) {
+      return res.status(500).send({
+        message: order[0],
+      });
+    }
+    order = order[1];
+    if (!order) {
+      order = await createOrder(iduser);
+      console.log("order1", order);
+      order = order[1];
+    }
+    console.log("order", order);
+    let gameExist = await Orders_has_stock.findOne({
+      where: {
+        idorder: order.idorder,
+        idgame: idgame,
+        platform: platform,
+      },
+    });
+    console.log("gameexits", gameExist);
+    if (gameExist) {
+      gameExist.quantity += quantity;
+      await gameExist.save();
+    } else {
+      await Orders_has_stock.create({
+        idorder: order.idorder,
+        idgame: idgame,
+        quantity: quantity,
+        platform: platform,
+      });
+    }
+    stock.stock -= quantity;
+    await stock.save();
+    order = await pendienteByUserId(iduser);
+    res.send(order);
+  } catch (error) {
+    res.status(500).send({
+      message: error.message || "Some error ocurred while retrieving stock.",
+    });
+  }
 };
 
-const subtractGame = async (req,res) => {
-    try {
-        let { idgame, quantity,platform } = req.body;
-        quantity = parseInt(quantity);
-        const iduser = req.user.id;
-        if(quantity < 1){
-            return res.status(400).send({
-                message: "La cantidad debe ser mayor a 0",
-            });
-        }
+const subtractGame = async (req, res) => {
+  try {
+    let { idgame, quantity, platform } = req.body;
+    quantity = parseInt(quantity);
+    const iduser = req.user.id;
+    if (quantity < 1) {
+      return res.status(400).send({
+        message: "La cantidad debe ser mayor a 0",
+      });
+    }
 
     let order = await pendienteByUserId(iduser);
     if (order[0]) {
