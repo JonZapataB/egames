@@ -2,14 +2,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
 
-const DatesGameCarousel = ({ data }) => {
+const DatesGameCarousel = ({ data, handleSelect }) => {
   if (data.length > 0) {
     return (
       <div>
         <Carousel>
           {data
             .map((game) => (
-              <Carousel.Item key={game.idgame}>
+              <Carousel.Item
+                onClick={() => handleSelect(game)}
+                key={game.idgame}
+              >
                 <img
                   src={game.cover}
                   alt={game.name}

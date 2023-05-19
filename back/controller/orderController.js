@@ -22,7 +22,7 @@ const getAll = async (req, res) => {
           {
             model: Stock,
             attributes: ["price", "platform"],
-            include: [{ model: Games, attributes: ["name"] }],
+            include: [{ model: Games, attributes: ["name", "cover"] }],
           },
         ],
       });
@@ -163,7 +163,7 @@ const getById = async (req, res) => {
             {
               model: Stock,
               attributes: ["price", "platform"],
-              include: [{ model: Games, attributes: ["name"] }],
+              include: [{ model: Games, attributes: ["name", "cover"] }],
             },
           ],
         },

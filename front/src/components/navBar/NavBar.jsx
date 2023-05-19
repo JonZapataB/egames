@@ -23,7 +23,7 @@ function NavScrollExample() {
   };
 
   return (
-    <Navbar className="barra" bg="light" expand="lg">
+    <Navbar className="barra" expand="lg">
       <Container fluid>
         <NavDropdown title={<HiMenu />} id="navbarScrollingDropdown">
           <NavDropdown.Item as={Link} to="Nintendo">

@@ -67,15 +67,15 @@ const Orders = () => {
 
   const getTotal = (order) => {
     let total = 0;
-    order.products.forEach((product) => {
-      total += product.price * product.orderline.quantity;
+    order.games.forEach((game) => {
+      total += game.price * game.orderline.quantity;
     });
     return total;
   };
 
   if (data.length > 0)
     return (
-      <di>
+      <div>
         <NavBar></NavBar>
         {data.map((order) => (
           <article key={order.idorder}>
@@ -88,7 +88,10 @@ const Orders = () => {
             {order.stocks.map((stocks) => (
               <div key={stocks.idgame}>
                 <h3>Game</h3>
-                <img src={stocks.stock.game.cover} alt="imagen del juego: " />
+                <img
+                  src={stocks.stock.game.cover}
+                  alt={stocks.stock.game.cover}
+                />
                 <p>{stocks.stock.game.name}</p>
                 <h3>Platform</h3>
                 <p>{stocks.stock.platform}</p>
@@ -120,7 +123,7 @@ const Orders = () => {
             ))}
           </article>
         ))}
-      </di>
+      </div>
     );
   else return <div>loading...</div>;
 };

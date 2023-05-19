@@ -18,7 +18,6 @@ const Login = () => {
       navigate("/");
     }
   });
-
   const getData = async (email, password) => {
     try {
       const response = await Axios.post(

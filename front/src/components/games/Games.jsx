@@ -65,17 +65,6 @@ const Games = () => {
     });
   };
 
-  const sortByPlatform = (games) => {
-    const newGames = [...games];
-    return newGames.sort((a, b) => {
-      const platformA = a.stocks[0].platform.toUpperCase();
-      const platformB = b.stocks[0].platform.toUpperCase();
-      if (platformA < platformB) return -1;
-      else if (platformA > platformB) return 1;
-      else return 0;
-    });
-  };
-
   useEffect(() => {
     getData();
   }, []);
@@ -83,14 +72,16 @@ const Games = () => {
     return (
       <div>
         <div>
-          <DatesGameCarousel data={sortByReleaseDate(data)} />
+          <DatesGameCarousel
+            data={sortByReleaseDate(data)}
+            handleSelect={handleSelect}
+          />
           <div className="boxGames">
             {sortByName(data).map((game) => (
               <article key={game.idgame} onClick={() => handleSelect(game)}>
                 <div className="juegos">
                   <h2>{game.name}</h2>
                   <img src={game.cover} alt={game.name} />
-                  <p>{game.description}</p>
                   <p>{game.release_date}</p>
                 </div>
               </article>
@@ -103,6 +94,7 @@ const Games = () => {
               />
             )}
           </div>
+          <GamesByPlatform data={data} />
         </div>
       </div>
     );
