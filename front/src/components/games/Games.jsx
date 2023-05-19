@@ -3,8 +3,8 @@ import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
 import GamesByPlatform from "./GamesByPlatform";
 import GameDescription from "./GameDescription";
-import "./Games.scss";
 import NavBar from "../navBar/NavBar";
+import "./Games.scss";
 const Games = () => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
@@ -74,17 +74,20 @@ const Games = () => {
   if (data.length > 0) 
   return (
     <div>
-      
         <div>
           <DatesGameCarousel data={sortByReleaseDate(data)} />
-            {sortByName(data).map((game) => (
-                <article key={game.idgame}>
-                    <h2>{game.name}</h2>
-                    <img src={game.cover} alt={game.name} />
-                    <p>{game.description}</p>
-                    <p>{game.release_date}</p>
-                </article>
-            ))}
+          <div className="boxGames">
+            {sortByName(data).map((game) => (    
+                  <article key={game.idgame}>
+                    <div className="juegos">
+                      <h2>{game.name}</h2>
+                      <img src={game.cover} alt={game.name} />
+                      <p>{game.description}</p>
+                      <p>{game.release_date}</p>
+                    </div>
+                  </article>
+                  ))}
+            </div>
         </div>
       </div>
     );
