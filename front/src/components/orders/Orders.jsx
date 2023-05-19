@@ -1,7 +1,7 @@
 //mostrar control de ordenes
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
 
 const Orders = () => {
@@ -29,15 +29,15 @@ const Orders = () => {
 
   const getTotal = (order) => {
     let total = 0;
-    order.products.forEach((product) => {
-      total += product.price * product.orderline.quantity;
+    order.games.forEach((game) => {
+      total += game.price * game.orderline.quantity;
     });
     return total;
   };
 
   if (data.length > 0)
     return (
-      <di>
+      <div>
         <NavBar></NavBar>
         {data.map((order) => (
           <article key={order.idorder}>
@@ -48,9 +48,9 @@ const Orders = () => {
             <h2>Estado del pedido</h2>
             <p>{order.status.name}</p>
             {order.stocks.map((stocks) => (
-              <div key={stocks.idgame}>
+            <div key={stocks.idgame}>
                 <h3>Game</h3>
-                <img src={stocks.stock.game.cover} alt="imagen del juego: " />
+                <img src={stocks.stock.game.cover} alt={stocks.stock.game.cover}/>
                 <p>{stocks.stock.game.name}</p>
                 <h3>Platform</h3>
                 <p>{stocks.stock.platform}</p>
@@ -58,11 +58,14 @@ const Orders = () => {
                 <p>{stocks.stock.price / 100}€</p>
                 <h3>Quantity</h3>
                 <p>{stocks.quantity}</p>
-              </div>
+                <a href="https://buy.stripe.com/test_4gw5mU0EF1AIb3GdQR">
+                    <button>Pagar</button>
+                </a> 
+            </div>
             ))}
           </article>
         ))}
-      </di>
+      </div>
     );
   else return <div>loading...</div>;
 };
