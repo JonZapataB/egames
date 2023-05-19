@@ -78,7 +78,7 @@ const Games = () => {
           <DatesGameCarousel data={sortByReleaseDate(data)} />
           <div className="boxGames">
             {sortByName(data).map((game) => (    
-                  <article key={game.idgame}>
+                  <article key={game.idgame} onClick={()=> handleSelect(game)}>
                     <div className="juegos">
                       <h2>{game.name}</h2>
                       <img src={game.cover} alt={game.name} />
@@ -87,6 +87,13 @@ const Games = () => {
                     </div>
                   </article>
                   ))}
+                  {show && (
+                    <GameDescription 
+                      show={show} 
+                      handleClose={handleClose} 
+                      game={game}
+                    />
+                  )}
             </div>
         </div>
       </div>
