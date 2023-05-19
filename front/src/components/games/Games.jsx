@@ -3,6 +3,7 @@ import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
 import GamesByPlatform from "./GamesByPlatform";
 import GameDescription from "./GameDescription";
+import NavBar from "../navBar/NavBar";
 import "./Games.scss";
 const Games = () => {
   const [data, setData] = useState([]);
@@ -82,29 +83,25 @@ const Games = () => {
       <div>
         <div>
           <DatesGameCarousel data={sortByReleaseDate(data)} />
-
-          {sortByName(data).map((game) => (
-            <article key={game.idgame} onClick={() => handleSelect(game)}>
-              <h2>{game.name}</h2>
-              <img src={game.cover} alt={game.name} />
-              <div>
-                {game.stocks.map((element) => (
-                  <div>
-                    <p>{element.platform}</p>
-                    <p>{element.price / 100}€</p>
-                  </div>
-                ))}
-              </div>
-            </article>
-          ))}
-          {show && (
-            <GameDescription
-              game={game}
-              show={show}
-              handleClose={handleClose}
-            />
-          )}
-          <GamesByPlatform data={filterByPlatform(data)} />
+          <div className="boxGames">
+            {sortByName(data).map((game) => (
+              <article key={game.idgame} onClick={() => handleSelect(game)}>
+                <div className="juegos">
+                  <h2>{game.name}</h2>
+                  <img src={game.cover} alt={game.name} />
+                  <p>{game.description}</p>
+                  <p>{game.release_date}</p>
+                </div>
+              </article>
+            ))}
+            {show && (
+              <GameDescription
+                show={show}
+                game={game}
+                handleClose={handleClose}
+              />
+            )}
+          </div>
         </div>
       </div>
     );

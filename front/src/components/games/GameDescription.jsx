@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 const GameDescription = ({ game, show, handleClose }) => {
   const navigate = useNavigate();
   const handleAddToCart = async (platform) => {
@@ -28,6 +29,7 @@ const GameDescription = ({ game, show, handleClose }) => {
       console.log(error);
     }
   };
+
   return (
     <div
       className="modal show"

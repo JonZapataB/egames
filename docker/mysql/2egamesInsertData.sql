@@ -20,7 +20,7 @@ INSERT INTO games (name, description, release_date, cover) VALUES
 ('Demon\'s Souls', 'La oscuridad se adueña de Boletaria', '2020-11-12', 'https://image.api.playstation.com/vulcan/img/rnd/202011/1717/GemRaOZaCMhGxQ9dRhnQQyT5.png'),
 ('Ratchet & Clank: Rift Apart', 'Los héroes interdimensionales vuelven a la acción', '2021-06-11', 'https://image.api.playstation.com/vulcan/ap/rnd/202101/2921/QYQ3S7LubGFoVfn8vJ3cmZHw.png'),
 ('Returnal', 'Una aventura espacial de acción roguelite', '2021-04-30', 'https://image.api.playstation.com/vulcan/ap/rnd/202011/1621/4ItSbqJE88H019Ua3WBQKLF8.png'),
-('Destruction AllStars', 'El caos y la destrucción son las estrellas del espectáculo', '2021-02-02', 'https://example.com/destruction-allstars-cover.jpg'),
+('Destruction AllStars', 'El caos y la destrucción son las estrellas del espectáculo', '2021-02-02', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTjHbRQE-qBPfglsJ6j8Yct0GxMpajvOSKUg&usqp=CAU'),
 ('Sackboy: A Big Adventure', 'Un nuevo viaje para el héroe de tela', '2020-11-12', 'https://image.api.playstation.com/vulcan/img/rnd/202010/1614/ZkPvfZf57Oi4Md5GaAlPTMoV.png'),
 ('Kena: Bridge of Spirits', 'Explora un mundo mágico y lucha contra el mal', '2021-08-24', 'https://image.api.playstation.com/vulcan/ap/rnd/202102/2307/vbIii6P97qiAOhdnYdLT85u8.jpg'),
 ('Call of Duty: Modern Warfare', 'Un juego de disparos en primera persona ambientado en un conflicto moderno.', '2019-10-25', 'https://image.api.playstation.com/vulcan/ap/rnd/202211/1717/6Of7qTgej2FBAKH0xZ1ZFEi7.png'),
