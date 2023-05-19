@@ -10,6 +10,14 @@ const Games = () => {
   const [show, setShow] = useState(false);
   const [game, setGame] = useState(null);
 
+  useEffect(() => {
+    const gameToBeBought = JSON.parse(sessionStorage.getItem("gameToBeBought"));
+    if (gameToBeBought) {
+      handleSelect(gameToBeBought);
+      sessionStorage.removeItem("gameToBeBought");
+    }
+  }, []);
+
   const handleSelect = (game) => {
     console.log(game);
     setGame(game);

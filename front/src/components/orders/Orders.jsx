@@ -1,26 +1,64 @@
 //mostrar control de ordenes
 import React, { useEffect, useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
 
 const Orders = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+
   const getData = async () => {
-    const infoUser = localStorage.getItem("infoUser");
-    console.log("infoUser", infoUser);
-    if (!infoUser) {
-      navigate("/login");
-      return;
+    try {
+      const infoUser = localStorage.getItem("infoUser");
+      console.log("infoUser", infoUser);
+      if (!infoUser) {
+        navigate("/login");
+        return;
+      }
+      const token = JSON.parse(infoUser).token;
+      const response = await axios.get(
+        "http://localhost:3011/api/orders/user/history",
+        { headers: { "x-access-token": token } }
+      );
+      console.log("LOS DATOS: ", response);
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 401 || error.response.status === 400) {
+        navigate("/login");
+      }
     }
-    const token = JSON.parse(infoUser).token;
-    const response = await Axios.get(
-      "http://localhost:3011/api/orders/user/history",
-      { headers: { "x-access-token": token } }
-    );
-    console.log("LOS DATOS: ", response);
-    setData(response.data);
+  };
+
+  const handleAddToCart = async (game, platform, subtract = false) => {
+    try {
+      const idgame = game.idgame;
+      const quantity = 1;
+      const infoUser = localStorage.getItem("infoUser");
+      console.log("infoUser", infoUser);
+      if (!infoUser) {
+        sessionStorage.setItem("gameToBeBought", JSON.stringify(game));
+        navigate("/login");
+        return;
+      }
+      const token = JSON.parse(infoUser).token;
+      const route = subtract ? "subtract" : "add";
+      const response = await axios.post(
+        `http://localhost:3011/api/orders/user/${route}`,
+        { idgame, quantity, platform },
+        {
+          headers: { "x-access-token": token },
+        }
+      );
+      console.log(response);
+      getData();
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 401 || error.response.status === 400) {
+        navigate("/login");
+      }
+    }
   };
 
   useEffect(() => {
@@ -57,7 +95,27 @@ const Orders = () => {
                 <h3>Price</h3>
                 <p>{stocks.stock.price / 100}€</p>
                 <h3>Quantity</h3>
-                <p>{stocks.quantity}</p>
+                <p>
+                  <button
+                    onClick={() =>
+                      handleAddToCart(
+                        stocks.stock.game,
+                        stocks.stock.platform,
+                        true
+                      )
+                    }
+                  >
+                    -
+                  </button>
+                  {stocks.quantity}
+                  <button
+                    onClick={() =>
+                      handleAddToCart(stocks.stock.game, stocks.stock.platform)
+                    }
+                  >
+                    +
+                  </button>
+                </p>
               </div>
             ))}
           </article>

@@ -6,6 +6,7 @@ import axios from "axios";
 
 const GameDescription = ({ game, show, handleClose }) => {
   const navigate = useNavigate();
+
   const handleAddToCart = async (platform) => {
     try {
       const idgame = game.idgame;
@@ -13,6 +14,7 @@ const GameDescription = ({ game, show, handleClose }) => {
       const infoUser = localStorage.getItem("infoUser");
       console.log("infoUser", infoUser);
       if (!infoUser) {
+        sessionStorage.setItem("gameToBeBought", JSON.stringify(game));
         navigate("/login");
         return;
       }
@@ -27,6 +29,10 @@ const GameDescription = ({ game, show, handleClose }) => {
       console.log(response);
     } catch (error) {
       console.log(error);
+      if (error.response.status === 401 || error.response.status === 400) {
+        sessionStorage.setItem("gameToBeBought", JSON.stringify(game));
+        navigate("/login");
+      }
     }
   };
 
