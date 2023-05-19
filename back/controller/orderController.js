@@ -21,7 +21,7 @@ const getAll = async (req, res) => {
           {
             model: Stock,
             attributes: ["price", "platform"],
-            include: [{ model: Games, attributes: ["name"] }],
+            include: [{ model: Games, attributes: ["name","cover"] }],
           },
         ],
       });
@@ -65,7 +65,7 @@ const getByUserId = async (req, res) => {
           {
             model: Stock,
             attributes: ["price", "platform"],
-            include: [{ model: Games, attributes: ["name"] }],
+            include: [{ model: Games, attributes: ["name","cover"] }],
           },
         ],
       });
@@ -107,7 +107,7 @@ const pendienteByUserId = async (iduser) => {
         {
           model: Stock,
           attributes: ["price", "platform"],
-          include: [{ model: Games, attributes: ["name"] }],
+          include: [{ model: Games, attributes: ["name","cover"] }],
         },
       ],
     });
@@ -152,7 +152,7 @@ const getById = async (req, res) => {
             {
               model: Stock,
               attributes: ["price", "platform"],
-              include: [{ model: Games, attributes: ["name"] }],
+              include: [{ model: Games, attributes: ["name","cover"] }],
             },
           ],
         },

@@ -1,6 +1,8 @@
 img{
     width: 40%;
     height: 40%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
 }
 
 .carousel img{
