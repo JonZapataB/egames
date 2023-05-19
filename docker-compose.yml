@@ -10,6 +10,7 @@ services:
     ports:
       - 3311:3306
     volumes:
+      - "./docker/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
       - "./docker/mysql/1egames.sql:/docker-entrypoint-initdb.d/1egames.sql"
       - "./docker/mysql/2egamesInsertData.sql:/docker-entrypoint-initdb.d/2egamesInsertData.sql"
       - "./docker/mysql/3egamesStockData.sql:/docker-entrypoint-initdb.d/3egamesStockData.sql"
