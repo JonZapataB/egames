@@ -71,23 +71,30 @@ const Games = () => {
   useEffect(() => {
     getData();
   }, []);
-  if (data.length > 0) 
-  return (
-    <div>
+  if (data.length > 0)
+    return (
+      <div>
         <div>
           <DatesGameCarousel data={sortByReleaseDate(data)} />
           <div className="boxGames">
-            {sortByName(data).map((game) => (    
-                  <article key={game.idgame}>
-                    <div className="juegos">
-                      <h2>{game.name}</h2>
-                      <img src={game.cover} alt={game.name} />
-                      <p>{game.description}</p>
-                      <p>{game.release_date}</p>
-                    </div>
-                  </article>
-                  ))}
-            </div>
+            {sortByName(data).map((game) => (
+              <article key={game.idgame} onClick={() => handleSelect(game)}>
+                <div className="juegos">
+                  <h2>{game.name}</h2>
+                  <img src={game.cover} alt={game.name} />
+                  <p>{game.description}</p>
+                  <p>{game.release_date}</p>
+                </div>
+              </article>
+            ))}
+            {show && (
+              <GameDescription
+                show={show}
+                game={game}
+                handleClose={handleClose}
+              />
+            )}
+          </div>
         </div>
       </div>
     );
