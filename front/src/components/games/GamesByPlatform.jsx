@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import "./Games.scss";
 
-//constante que obtenga los juegos por plataforma
 const GamesByPlatform = ({ data }) => {
   if (data.length > 0) {
     return (

@@ -55,6 +55,13 @@ const Games = () => {
       return priceA - priceB;
     });
   };
+  //constante que filtre por plataforma
+  const filterByPlatform = (games, platform) => {
+    const newGames = [...games];
+    return newGames.filter((game) => {
+      return game.stocks[0].platform === platform;
+    });
+  };
 
   const sortByPlatform = (games) => {
     const newGames = [...games];
@@ -77,13 +84,17 @@ const Games = () => {
           <DatesGameCarousel data={sortByReleaseDate(data)} />
 
           {sortByName(data).map((game) => (
-            <article key={game.idgame}>
+            <article key={game.idgame} onClick={() => handleSelect(game)}>
               <h2>{game.name}</h2>
-              <img
-                src={game.cover}
-                alt={game.name}
-                onClick={() => handleSelect(game)}
-              />
+              <img src={game.cover} alt={game.name} />
+              <div>
+                {game.stocks.map((element) => (
+                  <div>
+                    <p>{element.platform}</p>
+                    <p>{element.price / 100}€</p>
+                  </div>
+                ))}
+              </div>
             </article>
           ))}
           {show && (
@@ -93,7 +104,7 @@ const Games = () => {
               handleClose={handleClose}
             />
           )}
-          <GamesByPlatform data={sortByPlatform(data)} />
+          <GamesByPlatform data={filterByPlatform(data)} />
         </div>
       </div>
     );
