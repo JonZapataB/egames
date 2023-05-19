@@ -68,7 +68,7 @@ const Orders = () => {
   const getTotal = (order) => {
     let total = 0;
     order.games.forEach((game) => {
-      total += game.price * game.orderline.quantity;
+      total += game.price * game.quantity;
     });
     return total;
   };
