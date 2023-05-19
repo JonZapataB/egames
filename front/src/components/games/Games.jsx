@@ -3,6 +3,7 @@ import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
 import GamesByPlatform from "./GamesByPlatform";
 import GameDescription from "./GameDescription";
+import NavBar from "../navBar/NavBar";
 import "./Games.scss";
 const Games = () => {
   const [data, setData] = useState([]);
@@ -70,30 +71,23 @@ const Games = () => {
   useEffect(() => {
     getData();
   }, []);
-  if (data.length > 0)
-    return (
-      <div>
+  if (data.length > 0) 
+  return (
+    <div>
         <div>
           <DatesGameCarousel data={sortByReleaseDate(data)} />
-
-          {sortByName(data).map((game) => (
-            <article key={game.idgame}>
-              <h2>{game.name}</h2>
-              <img
-                src={game.cover}
-                alt={game.name}
-                onClick={() => handleSelect(game)}
-              />
-            </article>
-          ))}
-          {show && (
-            <GameDescription
-              game={game}
-              show={show}
-              handleClose={handleClose}
-            />
-          )}
-          <GamesByPlatform data={sortByPlatform(data)} />
+          <div className="boxGames">
+            {sortByName(data).map((game) => (    
+                  <article key={game.idgame}>
+                    <div className="juegos">
+                      <h2>{game.name}</h2>
+                      <img src={game.cover} alt={game.name} />
+                      <p>{game.description}</p>
+                      <p>{game.release_date}</p>
+                    </div>
+                  </article>
+                  ))}
+            </div>
         </div>
       </div>
     );
