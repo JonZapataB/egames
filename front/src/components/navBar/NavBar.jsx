@@ -58,18 +58,10 @@ function NavScrollExample() {
               </Nav.Link>
             )}
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="buscador"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    
   );
 }
 

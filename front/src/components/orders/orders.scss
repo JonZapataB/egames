@@ -1,0 +1,8 @@
+.pedidos{
+    display:grid;
+    grid-template-columns: repeat(4, 10fr);
+    margin: 50px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
