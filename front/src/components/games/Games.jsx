@@ -12,10 +12,11 @@ const Games = () => {
   const [game, setGame] = useState(null);
   const [searchWord, setSearchWord] = useState("");
 
-  const handleSearch = (value) => {
+  /* const handleSearch = (value) => {
     setSearchWord(value);
     console.log("EL VALOR DEL BUSCADOR", value);
-  };
+    setData(data);
+  }; */
 
   useEffect(() => {
     const gameToBeBought = JSON.parse(sessionStorage.getItem("gameToBeBought"));
@@ -43,14 +44,15 @@ const Games = () => {
     setData(response.data);
   };
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (searchWord.length < 3 && searchWord !== "") {
       return;
     }
-    getData().then((data) => {
-      setData(data);
+    const filteredGames = data.filter((game) => {
+      return game.name.toLowerCase().includes(searchWord.toLowerCase());
     });
-  }, [searchWord]); */
+    setData(filteredGames);
+  }, [searchWord]);
 
   const sortByReleaseDate = (games) => {
     const newGames = [...games];
@@ -94,6 +96,8 @@ const Games = () => {
             placeholder="Buscar..."
             value={searchWord}
             onChange={(e) => setSearchWord(e.target.value)}
+            /* value={searchWord}
+            onChange={(e) => handleSearch(e.target.value)} */
             className="searcher"
           />
         </div>
