@@ -1,11 +1,16 @@
 .barra{
-    background-image: url(https://img.redbull.com/images/q_auto,f_auto/redbullcom/2013/09/16/1331611589333_2/las-cosas-que-no-sab%C3%ADas-sobre-el-pac-man.jpg);
-    background-position: 50%;
+    background-image: url(https://img.freepik.com/vector-premium/escena-plataforma-juego-bits-pixel-art-bandera-tablero-valla-puente-hierba-nubes_360488-20.jpg?w=1380);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    padding: 50px !important;
 }
 
 .nav-item{
     color: white !important;
-    font-size: 30px !important;
+    font-size: 50px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: bold !important;
 }
 
 .dropdown-toggle{
@@ -13,22 +18,28 @@
 
 .navbar-brand{
     color: white !important;
-    font-size: 30px !important;
+    font-size: 50px !important;
     text-align: center !important;
     font-family: 'Roboto', sans-serif !important;
     font-weight: bold !important;
     text-shadow: 2px 2px 4px #000000 !important;
     justify-content: center !important;
     display: flex !important;
-    margin-left: 800px;
+    margin-left: 650px;
 }
 
 .nav-link{
-    font-size: 20px !important;
+    font-size: 50px !important;
     font-family: 'Roboto', sans-serif !important;
     font-weight: bold !important;
     text-shadow: 2px 2px 4px #000000 !important;
     justify-content: center !important;
     display: flex !important;
     color: #ffffff !important;
+}
+
+.buscador{
+    justify-content: center !important;
+    display: flex !important;
+    background-color: #00000000 !important;
 }
