@@ -5,10 +5,17 @@ import GamesByPlatform from "./GamesByPlatform";
 import GameDescription from "./GameDescription";
 import NavBar from "../navBar/NavBar";
 import "./Games.scss";
+
 const Games = () => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const [game, setGame] = useState(null);
+  const [searchWord, setSearchWord] = useState("");
+
+  const handleSearch = (value) => {
+    setSearchWord(value);
+    console.log("EL VALOR DEL BUSCADOR", value);
+  };
 
   useEffect(() => {
     const gameToBeBought = JSON.parse(sessionStorage.getItem("gameToBeBought"));
@@ -35,6 +42,15 @@ const Games = () => {
     console.log(response);
     setData(response.data);
   };
+
+  /* useEffect(() => {
+    if (searchWord.length < 3 && searchWord !== "") {
+      return;
+    }
+    getData().then((data) => {
+      setData(data);
+    });
+  }, [searchWord]); */
 
   const sortByReleaseDate = (games) => {
     const newGames = [...games];
@@ -68,9 +84,19 @@ const Games = () => {
   useEffect(() => {
     getData();
   }, []);
+
   if (data.length > 0)
     return (
       <div>
+        <div>
+          <input
+            type="text"
+            placeholder="Buscar..."
+            value={searchWord}
+            onChange={(e) => setSearchWord(e.target.value)}
+            className="searcher"
+          />
+        </div>
         <div>
           <DatesGameCarousel
             data={sortByReleaseDate(data)}

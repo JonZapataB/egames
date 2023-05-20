@@ -1,6 +1,7 @@
 import User from "../models/users.js";
 import UserInfo from "../models/user_info.js";
 import bcrypt from "bcrypt";
+
 const getAll = async (req, res) => {
   try {
     let users = await User.findAll({
@@ -8,6 +9,7 @@ const getAll = async (req, res) => {
       include: [
         {
           model: UserInfo,
+          attributes: ["name", "lastname", "address", "phoneNumber"],
         },
       ],
     });
@@ -21,11 +23,13 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
   try {
-    let user = await User.findByPk(req.params.id, {
+    const iduser = req.user.id;
+    let user = await User.findByPk(iduser, {
       attributes: ["iduser", "email", "password"],
       include: [
         {
           model: UserInfo,
+          attributes: ["name", "lastname", "address", "phoneNumber"],
         },
       ],
     });
@@ -102,8 +106,10 @@ const create = async (req, res) => {
 };
 
 const createUserInfo = async (req, res) => {
+  const iduser = req.user.id;
+
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(iduser);
     if (!user) {
       res.status(404).send("El usuario no existe");
       return;
@@ -113,8 +119,9 @@ const createUserInfo = async (req, res) => {
       lastname: req.body.lastname,
       address: req.body.address,
       phoneNumber: req.body.phoneNumber,
-      iduser: req.params.id,
+      iduser: iduser,
     });
+
     res.send(userInfo);
   } catch (error) {
     res.status(500).send({
@@ -124,19 +131,26 @@ const createUserInfo = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
+  const iduser = req.user.id;
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.user.id);
     if (!user) {
       res.status(404).send("El usuario no existe");
       return;
     }
-    const userInfo = await UserInfo.update({
-      name: req.body.name,
-      lastname: req.body.lastname,
-      address: req.body.address,
-      phoneNumber: req.body.phoneNumber,
-      iduser: req.params.id,
-    });
+    const userInfo = await UserInfo.update(
+      {
+        name: req.body.name,
+        lastname: req.body.lastname,
+        address: req.body.address,
+        phoneNumber: req.body.phoneNumber,
+      },
+      {
+        where: {
+          iduser: iduser,
+        },
+      }
+    );
     res.send(userInfo);
   } catch (error) {
     res.status(500).send({
