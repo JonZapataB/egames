@@ -46,14 +46,14 @@ function NavScrollExample() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link as={Link} to="/profile">
+            <Nav.Link  className="perfil" as={Link} to="/profile">
               <VscAccount />
             </Nav.Link>
-            <Nav.Link as={Link} to="/orders">
+            <Nav.Link className="carrito" as={Link} to="/orders">
               <GrCart />
             </Nav.Link>
             {loged && (
-              <Nav.Link onClick={logout}>
+              <Nav.Link className='logOut' onClick={logout}>
                 <HiOutlineLogout />
               </Nav.Link>
             )}
@@ -62,7 +62,7 @@ function NavScrollExample() {
             <Form.Control
               type="search"
               placeholder="Search"
-              className="me-2"
+              className="buscador"
               aria-label="Search"
             />
             <Button variant="outline-success">Search</Button>
