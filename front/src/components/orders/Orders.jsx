@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
+import Footer from "../Footer/Footer";
 import "./orders.scss";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -219,6 +220,7 @@ const Orders = () => {
       <div>
         El carrito está vacío.
         <button onClick={() => navigate("/")}>Ir a la tienda</button>
+        <Footer />
       </div>
     );
 };

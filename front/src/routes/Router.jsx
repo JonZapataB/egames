@@ -7,12 +7,17 @@ import Profile from "../components/profile/Profile";
 import Shipping from "../components/shipping/Shipping";
 import Payment from "../components/payment/Payment";
 import PlaceOrder from "../components/placeOrder/PlaceOrder";
+import AboutUs from "../components/Footer/AboutUs";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
     children: [
+      {
+        path: "aboutus",
+        element: <AboutUs />,
+      },
       /*{
         path: "beaches",
         element: <Beaches></Beaches>,

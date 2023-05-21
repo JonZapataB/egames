@@ -1,0 +1,109 @@
+.footer {
+  background-image: url(https://img.freepik.com/vector-premium/escena-plataforma-juego-bits-pixel-art-bandera-tablero-valla-puente-hierba-nubes_360488-20.jpg?w=1380);
+  color: #4a442d;
+  padding: 2rem;
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .footer-section {
+      flex: 1;
+      margin: 1rem;
+
+      &.about {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .logo-text {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+
+          span {
+            color: #f00; // Cambia el color según tu preferencia
+          }
+        }
+
+        .contact {
+          margin-top: 1rem;
+          text-align: center;
+
+          span {
+            display: block;
+            margin-bottom: 0.5rem;
+
+            i {
+              margin-right: 0.5rem;
+            }
+          }
+        }
+
+        .socials {
+          margin-top: 1rem;
+
+          a {
+            color: #caf7e2;
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+
+      &.links {
+        text-align: center;
+
+        button {
+          margin-top: 1rem;
+        }
+      }
+
+      &.contact-form {
+        text-align: center;
+
+        h2 {
+          font-size: 1.5rem;
+          margin-bottom: 1rem;
+        }
+
+        form {
+          .text-input {
+            background-color: #58b09c;
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+          }
+
+          .contact-input {
+            height: 6rem;
+          }
+
+          .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1rem;
+
+            i {
+              margin-right: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    background-color: #58b09c;
+    color: #4a442d;
+    padding: 1rem;
+    text-align: center;
+  }
+}

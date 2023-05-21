@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import Axios from "axios";
 import "./Login.scss";
 import NavBar from "../navBar/NavBar";
+import Footer from "../Footer/Footer";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -70,6 +71,7 @@ const Login = () => {
       </a>
       <br />
       <Link to="/register">¿No tienes cuenta? ¡Pues créate una!</Link>
+      <Footer />
     </div>
   );
 };

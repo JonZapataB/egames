@@ -5,6 +5,7 @@ import NavBar from "../navBar/NavBar";
 import "./Profile.scss";
 import Shipping from "../shipping/Shipping";
 import "../shipping/Shipping.scss";
+import Footer from "../Footer/Footer";
 
 const Profile = () => {
   const [data, setData] = useState([]);
@@ -149,6 +150,16 @@ const Profile = () => {
           </form>
         </div>
       )}
+      {data.userInfo && (
+        <div>
+          <h2>Nombre: {data.userInfo.name}</h2>
+          <h2>Apellido: {data.userInfo.lastname}</h2>
+          <h2>Email: {data.email}</h2>
+          <h2>Dirección: {data.userInfo.address}</h2>
+          <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
+        </div>
+      )}
+      <Footer />
     </div>
   );
 };
