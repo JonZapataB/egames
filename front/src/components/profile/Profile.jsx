@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
 import "./Profile.scss";
+import Shipping from "../shipping/Shipping";
+import "../shipping/Shipping.scss";
 
 const Profile = () => {
   const [data, setData] = useState([]);
@@ -105,8 +107,17 @@ const Profile = () => {
   return (
     <div>
       <NavBar />
-      <h1 className="tuperfil">Tu perfil</h1>
-
+      <h1>Tu perfil</h1>
+      {data.userInfo && (
+        <div>
+          <Shipping step1 step2></Shipping>
+          <h2>Nombre: {data.userInfo.name}</h2>
+          <h2>Apellido: {data.userInfo.lastname}</h2>
+          <h2>Email: {data.email}</h2>
+          <h2>Dirección: {data.userInfo.address}</h2>
+          <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
+        </div>
+      )}
       <br />
       {!data.userInfo && (
         <form action="" onSubmit={createUserInfo}>
@@ -124,15 +135,6 @@ const Profile = () => {
       <br />
       {data.userInfo && (
         <div>
-          {data.userInfo && (
-            <div className="datos">
-              <h2>Nombre: {data.userInfo.name}</h2>
-              <h2>Apellido: {data.userInfo.lastname}</h2>
-              <h2>Email: {data.email}</h2>
-              <h2>Dirección: {data.userInfo.address}</h2>
-              <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
-            </div>
-          )}
           <p>¿Quieres cambiar tu perfil?</p>
           <form action="" onSubmit={updateUserInfo}>
             <label htmlFor="name">Nombre </label>
