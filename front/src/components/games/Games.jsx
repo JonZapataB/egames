@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
 import GameDescription from "./GameDescription";
-import NavBar from "../navBar/NavBar";
 import "./Games.scss";
 
 const Games = () => {
@@ -97,28 +96,53 @@ const Games = () => {
           />
         </div>
         <div>
+          <h2 className="novedadesTittle" id="novedades">
+            Novedades
+          </h2>
           <DatesGameCarousel
             data={sortByReleaseDate(games)}
             handleSelect={handleSelect}
           />
+          <h2 className="juegosTittle" id="videojuegos">
+            Videojuegos
+          </h2>
           <nav className="filterGames">
-            <button onClick={() => setPlatform("All")}>All</button>
-            <button onClick={() => setPlatform("Nintendo Switch")}>
+            <button className="all" onClick={() => setPlatform("All")}>
+              All
+            </button>
+            <button
+              className="nintendo"
+              onClick={() => setPlatform("Nintendo Switch")}
+            >
               Nintendo Switch
             </button>
-            <button onClick={() => setPlatform("Play Station 4")}>
+            <button
+              className="ps4"
+              onClick={() => setPlatform("Play Station 4")}
+            >
               Play Station 4
             </button>
-            <button onClick={() => setPlatform("Play Station 5")}>
+            <button
+              className="ps5"
+              onClick={() => setPlatform("Play Station 5")}
+            >
               Play Station 5
             </button>
-            <button onClick={() => setPlatform("Xbox One")}>Xbox One</button>
+            <button className="xOne" onClick={() => setPlatform("Xbox One")}>
+              Xbox One
+            </button>
 
-            <button onClick={() => setPlatform("Xbox Series X")}>
+            <button
+              className="xSeries"
+              onClick={() => setPlatform("Xbox Series X")}
+            >
               Xbox Series X
             </button>
           </nav>
-          <select onChange={(e) => setSorting(e.target.value)}>
+          <select
+            className="filtros"
+            onChange={(e) => setSorting(e.target.value)}
+          >
             <option value="Alphabetical">Alphabetical</option>
             <option value="PriceAsc">Price Ascending</option>
             <option value="PriceDesc">Price Descending</option>
@@ -128,10 +152,11 @@ const Games = () => {
             {filteredGames.map((game) => (
               <article key={game.idgame} onClick={() => handleSelect(game)}>
                 <div className="juegos">
-                  <h2>{game.name}</h2>
                   <img src={game.cover} alt={game.name} />
-                  <p>{game.release_date}</p>
-                  <small>{game.stocks[0].price / 100}€</small>
+                  <h2>{game.name}</h2>
+                  <small className="precio">
+                    {game.stocks[0].price / 100}€
+                  </small>
                 </div>
               </article>
             ))}

@@ -1,24 +1,36 @@
+/* Imágenes */
 img {
-  width: 70%;
-  height: 70%;
-  aspect-ratio: 3/2;
+  width: 80%;
+  height: 80%;
+  height: auto;
   object-fit: contain;
+  aspect-ratio: 3/2;
 }
 
 .carousel img {
-  width: 50%;
-  height: 600px;
-  aspect-ratio: 3/2;
-  object-fit: contain;
-  /* mix-blend-mode: color-burn; */
+  width: 100%;
+  height: 550px;
 }
 
+/* Contenedores */
 .boxGames {
   display: grid;
-  grid-template-columns: repeat(3, 10fr);
+  grid-template-columns: repeat(3, 1fr);
   margin: 50px;
 }
 
+/* Títulos */
+.novedadesTittle,
+.juegosTittle {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: 50px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+
+/* Juegos */
 .juegos {
   flex-basis: 25%;
   margin-bottom: 20px;
@@ -26,28 +38,62 @@ img {
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 10px;
+  margin-left: 0;
+  margin-right: 0;
   text-align: center;
+  border-left: 1px solid rgba(79, 79, 79, 0.802);
+  border-right: 1px solid rgba(79, 79, 79, 0.802);
 }
 
-.juegos:hover {
+.juegos img:hover {
   transform: scale(1.1);
   transition: transform 0.5s;
 }
 
-.juegos img {
-  max-width: 100%;
-  height: auto;
-}
-
+/* Barra de búsqueda */
 .searcher {
-  background-color: aqua;
+  background-color: #58b09c;
   width: 100%;
   height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+}
+
+/* Precios */
+.precio {
+  font-size: 20px;
+}
+
+/* Filtros */
+.all,
+.nintendo,
+.ps4,
+.ps5,
+.xOne,
+.xSeries {
+  margin: 50px;
+  border-radius: 10px;
+  background-color: #58b09c;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+}
+
+.filterGames,
+.filtros {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }

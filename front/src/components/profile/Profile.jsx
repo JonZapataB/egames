@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
+import "./Profile.scss";
+import Shipping from "../shipping/Shipping";
+import "../shipping/Shipping.scss";
 import Footer from "../Footer/Footer";
 
 const Profile = () => {
@@ -106,7 +109,16 @@ const Profile = () => {
     <div>
       <NavBar />
       <h1>Tu perfil</h1>
-
+      {data.userInfo && (
+        <div>
+          <Shipping step1 step2></Shipping>
+          <h2>Nombre: {data.userInfo.name}</h2>
+          <h2>Apellido: {data.userInfo.lastname}</h2>
+          <h2>Email: {data.email}</h2>
+          <h2>Dirección: {data.userInfo.address}</h2>
+          <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
+        </div>
+      )}
       <br />
       {!data.userInfo && (
         <form action="" onSubmit={createUserInfo}>
