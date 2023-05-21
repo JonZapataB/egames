@@ -46,14 +46,14 @@ function NavScrollExample() {
             style={{ maxHeight: "100px" }}
             navbarScroll
           >
-            <Nav.Link  className="perfil" as={Link} to="/profile">
+            <Nav.Link className="perfil" as={Link} to="/profile">
               <VscAccount />
             </Nav.Link>
             <Nav.Link className="carrito" as={Link} to="/orders">
               <GrCart />
             </Nav.Link>
             {loged && (
-              <Nav.Link className='logOut' onClick={logout}>
+              <Nav.Link className="logOut" onClick={logout}>
                 <HiOutlineLogout />
               </Nav.Link>
             )}

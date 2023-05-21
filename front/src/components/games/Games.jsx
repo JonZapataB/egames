@@ -7,7 +7,9 @@ import "./Games.scss";
 
 const Games = () => {
   const [games, setGames] = useState([]);
-  const [show, setShow] = useState(false);
+  const [filteredGames, setFilteredGames] = useState([]);
+  const [platform, setPlatform] = useState("All");
+  const [sorting, setSorting] = useState("Alphabetical");
   const [game, setGame] = useState(null);
   const [searchWord, setSearchWord] = useState("");
 
@@ -22,14 +24,11 @@ const Games = () => {
   const handleSelect = (game) => {
     console.log(game);
     setGame(game);
-    handleShow();
   };
 
   const handleClose = () => {
     setGame(null);
-    setShow(false);
   };
-  const handleShow = () => setShow(true);
 
   useEffect(() => {
     if (searchWord.length < 3 && searchWord !== "") {
@@ -56,20 +55,34 @@ const Games = () => {
     });
   };
 
-  const sortByName = (games) => {
-    const newGames = [...games];
-    return newGames.sort((a, b) => {
-      const nameA = a.name.toUpperCase();
-      const nameB = b.name.toUpperCase();
-      if (nameA < nameB) return -1;
-      else if (nameA > nameB) return 1;
-      else return 0;
-    });
-  };
-
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    let filteredGamesResult = [...games];
+    if (platform !== "All") {
+      filteredGamesResult = filteredGamesResult.filter((game) => {
+        let found = false;
+        game.stocks.forEach((stock) => {
+          if (stock.platform === platform) found = true;
+        });
+
+        return found;
+      });
+    }
+
+    filteredGamesResult.sort((a, b) => {
+      if (sorting === "PriceAsc") return a.stocks[0].price - b.stocks[0].price;
+      else if (sorting === "PriceDesc")
+        return b.stocks[0].price - a.stocks[0].price;
+      else if (sorting === "ReleaseDate")
+        return new Date(a.release_date) - new Date(b.release_date);
+      else return a.name.toUpperCase() - b.name.toUpperCase();
+    });
+
+    setFilteredGames(filteredGamesResult);
+  }, [games, platform, sorting]);
 
   if (games.length > 0)
     return (
@@ -88,22 +101,42 @@ const Games = () => {
             data={sortByReleaseDate(games)}
             handleSelect={handleSelect}
           />
+          <nav className="filterGames">
+            <button onClick={() => setPlatform("All")}>All</button>
+            <button onClick={() => setPlatform("Nintendo Switch")}>
+              Nintendo Switch
+            </button>
+            <button onClick={() => setPlatform("Play Station 4")}>
+              Play Station 4
+            </button>
+            <button onClick={() => setPlatform("Play Station 5")}>
+              Play Station 5
+            </button>
+            <button onClick={() => setPlatform("Xbox One")}>Xbox One</button>
+
+            <button onClick={() => setPlatform("Xbox Series X")}>
+              Xbox Series X
+            </button>
+          </nav>
+          <select onChange={(e) => setSorting(e.target.value)}>
+            <option value="Alphabetical">Alphabetical</option>
+            <option value="PriceAsc">Price Ascending</option>
+            <option value="PriceDesc">Price Descending</option>
+            <option value="ReleaseDate">Release Date</option>
+          </select>
           <div className="boxGames">
-            {sortByName(games).map((game) => (
+            {filteredGames.map((game) => (
               <article key={game.idgame} onClick={() => handleSelect(game)}>
                 <div className="juegos">
                   <h2>{game.name}</h2>
                   <img src={game.cover} alt={game.name} />
                   <p>{game.release_date}</p>
+                  <small>{game.stocks[0].price / 100}€</small>
                 </div>
               </article>
             ))}
-            {show && (
-              <GameDescription
-                show={show}
-                game={game}
-                handleClose={handleClose}
-              />
+            {game != null && (
+              <GameDescription game={game} handleClose={handleClose} />
             )}
           </div>
         </div>
