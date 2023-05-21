@@ -42,7 +42,7 @@ const GameDescription = ({ game, show, handleClose }) => {
       style={{ display: "block", position: "initial" }}
     >
       <div>
-        <Modal show={show} onHide={handleClose} key={game.idgame}>
+        <Modal show={game != null} onHide={handleClose} key={game.idgame}>
           <Modal.Header closeButton>
             <Modal.Title>{game.name}</Modal.Title>
           </Modal.Header>
