@@ -1,18 +1,18 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import {HiMenu} from 'react-icons/hi';
-import {VscAccount} from "react-icons/vsc";
-import {GrCart} from "react-icons/gr";
-import { Link } from 'react-router-dom';
-import './NavBar.scss';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { HiMenu } from "react-icons/hi";
+import { VscAccount } from "react-icons/vsc";
+import { GrCart } from "react-icons/gr";
+import { Link } from "react-router-dom";
+import "./NavBar.scss";
 
 function NavScrollExample() {
   return (
-    <Navbar className='barra' expand="lg">
+    <Navbar className="barra" expand="lg">
       <Container fluid>
         <NavDropdown title={<HiMenu />} id="navbarScrollingDropdown">
           <NavDropdown.Item as={Link} to="Nintendo">
