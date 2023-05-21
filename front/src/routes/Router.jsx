@@ -4,6 +4,9 @@ import Register from "../components/register/Register";
 import Login from "../components/login/Login";
 import Orders from "../components/orders/Orders";
 import Profile from "../components/profile/Profile";
+import Shipping from "../components/shipping/Shipping";
+import Payment from "../components/payment/Payment";
+import PlaceOrder from "../components/placeOrder/PlaceOrder";
 
 const Router = createBrowserRouter([
   {
@@ -37,6 +40,18 @@ const Router = createBrowserRouter([
   {
     path: "/orders",
     element: <Orders></Orders>,
+  },
+  {
+    path: "/shipping",
+    element: <Shipping></Shipping>,
+  },
+  {
+    path: "/payment",
+    element: <Payment></Payment>,
+  },
+  {
+    path: "/placeorder",
+    element: <PlaceOrder></PlaceOrder>,
   },
 ]);
 

@@ -28,7 +28,7 @@ router.post("/user/subtract", verifyToken, (req, res) => {
   orderController.subtractGame(req, res);
 });
 
-router.delete("/delete/:idorder", (req, res) => {
+router.delete("/user/delete/:idorder", verifyToken, (req, res) => {
   orderController.deleteGame(req, res);
 });
 
