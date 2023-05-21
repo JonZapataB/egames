@@ -1,13 +1,13 @@
 img {
-  width: 40%;
-  height: 40%;
+  width: 70%;
+  height: 70%;
   aspect-ratio: 3/2;
   object-fit: contain;
 }
 
 .carousel img {
-  width: 80%;
-  height: 900px;
+  width: 50%;
+  height: 600px;
   aspect-ratio: 3/2;
   object-fit: contain;
   /* mix-blend-mode: color-burn; */
@@ -15,7 +15,7 @@ img {
 
 .boxGames {
   display: grid;
-  grid-template-columns: repeat(4, 10fr);
+  grid-template-columns: repeat(3, 10fr);
   margin: 50px;
 }
 
@@ -29,6 +29,7 @@ img {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 10px;
+  text-align: center;
 }
 
 .juegos:hover {
@@ -46,7 +47,7 @@ img {
   width: 100%;
   height: 44px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }

@@ -25,7 +25,11 @@ function NavScrollExample() {
   return (
     <Navbar className="barra" expand="lg">
       <Container fluid>
-        <NavDropdown title={<HiMenu />} id="navbarScrollingDropdown">
+        <NavDropdown
+          className="hamburguer"
+          title={<HiMenu />}
+          id="navbarScrollingDropdown"
+        >
           <NavDropdown.Item as={Link} to="Nintendo">
             Nintendo Switch
           </NavDropdown.Item>
@@ -58,15 +62,6 @@ function NavScrollExample() {
               </Nav.Link>
             )}
           </Nav>
-          <Form className="d-flex">
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="buscador"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
+import "./orders.scss";
 
 const Orders = () => {
   const [data, setData] = useState([]);
@@ -77,52 +78,56 @@ const Orders = () => {
     return (
       <div>
         <NavBar></NavBar>
-        {data.map((order) => (
-          <article key={order.idorder}>
-            <h2>Order</h2>
-            <p>{order.idorder}</p>
-            <h1>User</h1>
-            <p>{order.iduser}</p>
-            <h2>Estado del pedido</h2>
-            <p>{order.status.name}</p>
-            {order.stocks.map((stocks) => (
-              <div key={stocks.idgame}>
-                <h3>Game</h3>
-                <img
-                  src={stocks.stock.game.cover}
-                  alt={stocks.stock.game.cover}
-                />
-                <p>{stocks.stock.game.name}</p>
-                <h3>Platform</h3>
-                <p>{stocks.stock.platform}</p>
-                <h3>Price</h3>
-                <p>{stocks.stock.price / 100}€</p>
-                <h3>Quantity</h3>
-                <p>
-                  <button
-                    onClick={() =>
-                      handleAddToCart(
-                        stocks.stock.game,
-                        stocks.stock.platform,
-                        true
-                      )
-                    }
-                  >
-                    -
-                  </button>
-                  {stocks.quantity}
-                  <button
-                    onClick={() =>
-                      handleAddToCart(stocks.stock.game, stocks.stock.platform)
-                    }
-                  >
-                    +
-                  </button>
-                </p>
-              </div>
-            ))}
-          </article>
-        ))}
+        <div className="total">
+          {data.map((order) => (
+            <article className="pedidos" key={order.idorder}>
+              <h2 className="idTittle">IdOrder</h2>
+              <p className="idOrder">{order.idorder}</p>
+              <h2 className="statusTittle">Estado del pedido</h2>
+              <p className="status">{order.status.name}</p>
+              {order.stocks.map((stocks) => (
+                <div key={stocks.idgame}>
+                  <h3 className="gameTittle">Game</h3>
+                  <img
+                    className="imgGame"
+                    src={stocks.stock.game.cover}
+                    alt={stocks.stock.game.cover}
+                  />
+                  <p className="game">{stocks.stock.game.name}</p>
+                  <h3 className="platformTittle">Platform</h3>
+                  <p className="platform">{stocks.stock.platform}</p>
+                  <h3 className="priceTittle">Price</h3>
+                  <p className="price">{stocks.stock.price / 100}€</p>
+                  <h3 className="quantityTittle">Quantity</h3>
+                  <p className="quantity">
+                    <button
+                      onClick={() =>
+                        handleAddToCart(
+                          stocks.stock.game,
+                          stocks.stock.platform,
+                          true
+                        )
+                      }
+                    >
+                      -
+                    </button>
+                    {stocks.quantity}
+                    <button
+                      onClick={() =>
+                        handleAddToCart(
+                          stocks.stock.game,
+                          stocks.stock.platform
+                        )
+                      }
+                    >
+                      +
+                    </button>
+                  </p>
+                </div>
+              ))}
+            </article>
+          ))}
+        </div>
       </div>
     );
   else return <div>loading...</div>;
