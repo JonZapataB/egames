@@ -24,7 +24,7 @@ router.post("/user/add", verifyToken, (req, res) => {
   orderController.addGame(req, res);
 });
 
-router.post("/user/:iduser/subtract", (req, res) => {
+router.post("/user/subtract", verifyToken, (req, res) => {
   orderController.subtractGame(req, res);
 });
 

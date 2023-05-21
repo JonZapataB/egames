@@ -31,9 +31,12 @@ authRouter.get(
         name: user.email,
         id: user.iduser,
       },
-      process.env.TOKEN_SECRET
+      process.env.TOKEN_SECRET,
+      { expiresIn: "12h" }
     );
-    res.redirect(`http://localhost:3000/login?token=${token}&id=${user.iduser}`);
+    res.redirect(
+      `http://localhost:3000/login?token=${token}&id=${user.iduser}`
+    );
   }
 );
 
@@ -65,9 +68,10 @@ authRouter.post("/login", async (req, res) => {
         name: user.email,
         id: user.iduser,
       },
-      process.env.TOKEN_SECRET
+      process.env.TOKEN_SECRET,
+      { expiresIn: "12h" }
     );
-    res.send({email: user.email, token: token, id: user.iduser});
+    res.send({ email: user.email, token: token, id: user.iduser });
   } catch (error) {
     res.status(500).send("Error al iniciar sesión");
   }

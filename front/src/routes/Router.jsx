@@ -3,13 +3,13 @@ import App from "../App";
 import Register from "../components/register/Register";
 import Login from "../components/login/Login";
 import Orders from "../components/orders/Orders";
+import Profile from "../components/profile/Profile";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
     children: [
-      
       /*{
         path: "beaches",
         element: <Beaches></Beaches>,
@@ -25,6 +25,10 @@ const Router = createBrowserRouter([
   {
     path: "/register",
     element: <Register></Register>,
+  },
+  {
+    path: "/profile",
+    element: <Profile></Profile>,
   },
   {
     path: "/login",

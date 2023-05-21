@@ -3,6 +3,7 @@ import Orders_has_stock from "../models/orders_has_stock.js";
 import Games from "../models/games.js";
 import Stock from "../models/stock.js";
 import Status from "../models/status.js";
+import sequelize from "../config/db.js";
 
 const getAll = async (req, res) => {
   try {
@@ -21,7 +22,7 @@ const getAll = async (req, res) => {
           {
             model: Stock,
             attributes: ["price", "platform"],
-            include: [{ model: Games, attributes: ["name","cover"] }],
+            include: [{ model: Games, attributes: ["name", "cover"] }],
           },
         ],
       });
@@ -56,19 +57,24 @@ const getByUserId = async (req, res) => {
     });
     console.log("orders20", orders);
     let stocks = orders.map(async (order) => {
-      return Orders_has_stock.findAll({
-        where: {
-          idorder: order.idorder,
-        },
-        attributes: ["quantity", "idgame"],
-        include: [
-          {
-            model: Stock,
-            attributes: ["price", "platform"],
-            include: [{ model: Games, attributes: ["name","cover"] }],
-          },
-        ],
-      });
+      return await sequelize.query(
+        "SELECT `orders_has_stock`.`idorder`, `orders_has_stock`.`quantity`, `orders_has_stock`.`idgame`, `stock`.`idgame` \
+AS `stock.idgame`, `stock`.`price` \
+ AS `stock.price`, `stock`.`platform` \
+ AS `stock.platform`, `stock->game`.`idgame` \
+ AS `stock.game.idgame`, `stock->game`.`name` \
+ AS `stock.game.name` \
+ FROM `orders_has_stock` AS `orders_has_stock` \
+ LEFT OUTER JOIN `stock` AS `stock` \
+ ON `orders_has_stock`.`idgame` = `stock`.`idgame`AND `orders_has_stock`.`platform` = `stock`.`platform` \
+ LEFT OUTER JOIN `games` AS `stock->game` \
+ ON `stock`.`idgame` = `stock->game`.`idgame` \
+ WHERE `orders_has_stock`.`idorder` = 1;",
+        {
+          nest: true,
+          type: sequelize.QueryTypes.SELECT,
+        }
+      );
     });
     stocks = await Promise.all(stocks);
     orders = orders.map((order, index) => {
@@ -98,19 +104,24 @@ const pendienteByUserId = async (iduser) => {
     if (!order) {
       return [null, null];
     }
-    let stocks = await Orders_has_stock.findAll({
-      where: {
-        idorder: order.idorder,
-      },
-      attributes: ["quantity", "idgame"],
-      include: [
-        {
-          model: Stock,
-          attributes: ["price", "platform"],
-          include: [{ model: Games, attributes: ["name","cover"] }],
-        },
-      ],
-    });
+    let stocks = await sequelize.query(
+      "SELECT `orders_has_stock`.`idorder`, `orders_has_stock`.`quantity`, `orders_has_stock`.`idgame`, `stock`.`idgame` \
+AS `stock.idgame`, `stock`.`price` \
+AS `stock.price`, `stock`.`platform` \
+AS `stock.platform`, `stock->game`.`idgame` \
+AS `stock.game.idgame`, `stock->game`.`name` \
+AS `stock.game.name` \
+FROM `orders_has_stock` AS `orders_has_stock` \
+LEFT OUTER JOIN `stock` AS `stock` \
+ON `orders_has_stock`.`idgame` = `stock`.`idgame`AND `orders_has_stock`.`platform` = `stock`.`platform` \
+LEFT OUTER JOIN `games` AS `stock->game` \
+ON `stock`.`idgame` = `stock->game`.`idgame` \
+WHERE `orders_has_stock`.`idorder` = 1;",
+      {
+        nest: true,
+        type: sequelize.QueryTypes.SELECT,
+      }
+    );
     order.dataValues.stocks = stocks;
 
     return [null, order];
@@ -152,7 +163,7 @@ const getById = async (req, res) => {
             {
               model: Stock,
               attributes: ["price", "platform"],
-              include: [{ model: Games, attributes: ["name","cover"] }],
+              include: [{ model: Games, attributes: ["name", "cover"] }],
             },
           ],
         },
