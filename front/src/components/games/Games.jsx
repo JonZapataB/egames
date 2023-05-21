@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
-import GamesByPlatform from "./GamesByPlatform";
 import GameDescription from "./GameDescription";
 import NavBar from "../navBar/NavBar";
 import "./Games.scss";
 
 const Games = () => {
-  const [data, setData] = useState([]);
+  const [games, setGames] = useState([]);
   const [show, setShow] = useState(false);
   const [game, setGame] = useState(null);
   const [searchWord, setSearchWord] = useState("");
-
-  /* const handleSearch = (value) => {
-    setSearchWord(value);
-    console.log("EL VALOR DEL BUSCADOR", value);
-    setData(data);
-  }; */
 
   useEffect(() => {
     const gameToBeBought = JSON.parse(sessionStorage.getItem("gameToBeBought"));
@@ -38,21 +31,21 @@ const Games = () => {
   };
   const handleShow = () => setShow(true);
 
-  const getData = async () => {
-    const response = await Axios.get("http://localhost:3011/api/games");
-    console.log(response);
-    setData(response.data);
-  };
-
   useEffect(() => {
     if (searchWord.length < 3 && searchWord !== "") {
       return;
     }
-    const filteredGames = data.filter((game) => {
+    const searchedGames = games.filter((game) => {
       return game.name.toLowerCase().includes(searchWord.toLowerCase());
     });
-    setData(filteredGames);
+    setGames(searchedGames);
   }, [searchWord]);
+
+  const getData = async () => {
+    const response = await Axios.get("http://localhost:3011/api/games");
+    console.log(response);
+    setGames(response.data);
+  };
 
   const sortByReleaseDate = (games) => {
     const newGames = [...games];
@@ -74,20 +67,11 @@ const Games = () => {
     });
   };
 
-  const sortByPrice = (games) => {
-    const newGames = [...games];
-    return newGames.sort((a, b) => {
-      const priceA = a.stocks[0].price;
-      const priceB = b.stocks[0].price;
-      return priceA - priceB;
-    });
-  };
-
   useEffect(() => {
     getData();
   }, []);
 
-  if (data.length > 0)
+  if (games.length > 0)
     return (
       <div>
         <div>
@@ -96,18 +80,16 @@ const Games = () => {
             placeholder="Buscar..."
             value={searchWord}
             onChange={(e) => setSearchWord(e.target.value)}
-            /* value={searchWord}
-            onChange={(e) => handleSearch(e.target.value)} */
             className="searcher"
           />
         </div>
         <div>
           <DatesGameCarousel
-            data={sortByReleaseDate(data)}
+            data={sortByReleaseDate(games)}
             handleSelect={handleSelect}
           />
           <div className="boxGames">
-            {sortByName(data).map((game) => (
+            {sortByName(games).map((game) => (
               <article key={game.idgame} onClick={() => handleSelect(game)}>
                 <div className="juegos">
                   <h2>{game.name}</h2>
@@ -124,7 +106,6 @@ const Games = () => {
               />
             )}
           </div>
-          <GamesByPlatform data={data} />
         </div>
       </div>
     );
