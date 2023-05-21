@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
+import Footer from "../Footer/Footer";
 
 const Profile = () => {
   const [data, setData] = useState([]);
@@ -146,6 +147,7 @@ const Profile = () => {
           <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

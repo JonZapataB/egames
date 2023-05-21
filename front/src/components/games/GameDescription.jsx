@@ -6,6 +6,8 @@ import axios from "axios";
 
 const GameDescription = ({ game, show, handleClose }) => {
   const navigate = useNavigate();
+  const [addedToCart, setAddedToCart] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleAddToCart = async (platform) => {
     try {
@@ -26,7 +28,8 @@ const GameDescription = ({ game, show, handleClose }) => {
           headers: { "x-access-token": token },
         }
       );
-      console.log(response);
+      setAddedToCart(true);
+      setShowMessage(true);
     } catch (error) {
       console.log(error);
       if (error.response.status === 401 || error.response.status === 400) {
@@ -65,9 +68,20 @@ const GameDescription = ({ game, show, handleClose }) => {
             </article>
           </Modal.Body>
           <Modal.Footer>
+            {showMessage && <p>Juego añadido</p>}
             <Button variant="secondary" onClick={handleClose}>
-              Close
+              Cerrar
             </Button>
+            {showMessage && (
+              //si el juego se ha añadido al carrito, se muestra el botón de ir al carrito y te lleva a la ruta /orders
+              <Button
+                onClick={() => {
+                  navigate("/orders");
+                }}
+              >
+                Ir al Pedido
+              </Button>
+            )}
           </Modal.Footer>
         </Modal>
       </div>

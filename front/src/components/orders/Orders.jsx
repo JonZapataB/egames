@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
+import Footer from "../Footer/Footer";
 import "./orders.scss";
 
 const Orders = () => {
@@ -128,6 +129,7 @@ const Orders = () => {
             </article>
           ))}
         </div>
+        <Footer />
       </div>
     );
   else return <div>loading...</div>;
