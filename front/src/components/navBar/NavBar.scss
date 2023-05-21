@@ -1,63 +1,64 @@
-.barra{
-    background-image: url(https://img.freepik.com/vector-premium/escena-plataforma-juego-bits-pixel-art-bandera-tablero-valla-puente-hierba-nubes_360488-20.jpg?w=1380);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: bottom;
-    padding: 50px !important;
+.barra {
+  background-image: url(https://img.freepik.com/vector-premium/escena-plataforma-juego-bits-pixel-art-bandera-tablero-valla-puente-hierba-nubes_360488-20.jpg?w=1380);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  padding: 50px !important;
 }
 
-.nav-item{
-    color: white !important;
-    font-size: 50px !important;
-    font-family: 'Roboto', sans-serif !important;
-    font-weight: bold !important;
+.hamburguer {
+  display: none !important;
 }
 
-.dropdown-toggle{
+.nav-item {
+  color: white !important;
+  font-size: 50px !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: bold !important;
 }
 
-.navbar-brand{
-    color: white !important;
-    font-size: 50px !important;
-    text-align: center !important;
-    font-family: 'Roboto', sans-serif !important;
-    font-weight: bold !important;
-    text-shadow: 2px 2px 4px #000000 !important;
-    justify-content: center !important;
-    display: flex !important;
-    margin-left: 650px;
+.navbar-brand {
+  color: white !important;
+  font-size: 50px !important;
+  text-align: center !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: bold !important;
+  text-shadow: 2px 2px 4px #000000 !important;
+  justify-content: center !important;
+  display: flex !important;
+  margin-left: 650px;
 }
 
-.nav-link{
-    font-size: 50px !important;
-    font-family: 'Roboto', sans-serif !important;
-    font-weight: bold !important;
-    text-shadow: 2px 2px 4px #000000 !important;
-    justify-content: center !important;
-    display: flex !important;
-    color: #ffffff !important;
+.nav-link {
+  font-size: 50px !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: bold !important;
+  text-shadow: 2px 2px 4px #000000 !important;
+  justify-content: center !important;
+  display: flex !important;
+  color: #ffffff !important;
 }
-.buscar{
-    padding-top: 200px !important;
-    padding-right: 1000px !important;
+.buscar {
+  padding-top: 200px !important;
+  padding-right: 1000px !important;
 }
-.buscador{
-    justify-content: center !important;
-    display: flex !important;
-    background-color: #00000000 !important;
+.buscador {
+  justify-content: center !important;
+  display: flex !important;
+  background-color: #00000000 !important;
 }
-.carrito{
-    color: #ffffff !important;
+.carrito {
+  color: #ffffff !important;
 }
-.perfil{
-    text-align: right;
-    margin-left: 550px;
+.perfil {
+  text-align: right;
+  margin-left: 550px;
 }
 
-.nav-link:hover{
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px #000000 !important;
-    justify-content: center !important;
-    display: flex !important;
-    background-color: #00000000 !important;
+.nav-link:hover {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px #000000 !important;
+  justify-content: center !important;
+  display: flex !important;
+  background-color: #00000000 !important;
 }

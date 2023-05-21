@@ -79,50 +79,54 @@ const Orders = () => {
       <div>
         <NavBar></NavBar>
         <div className="total">
-        {data.map((order) => (
-          <article className="pedidos" key={order.idorder}>
-            <h2 className="idTittle">IdOrder</h2>
-            <p className="idOrder">{order.idorder}</p>
-            <h2 className="statusTittle">Estado del pedido</h2>
-            <p className="status">{order.status.name}</p>
-            {order.stocks.map((stocks) => (
-              <div key={stocks.idgame}>
-                <h3 className="gameTittle">Game</h3>
-                <img className="imgGame"
-                  src={stocks.stock.game.cover}
-                  alt={stocks.stock.game.cover}
-                />
-                <p className="game">{stocks.stock.game.name}</p>
-                <h3 className="platformTittle">Platform</h3>
-                <p className="platform">{stocks.stock.platform}</p>
-                <h3 className="priceTittle">Price</h3>
-                <p className="price">{stocks.stock.price / 100}€</p>
-                <h3 className="quantityTittle">Quantity</h3>
-                <p className="quantity">
-                  <button
-                    onClick={() =>
-                      handleAddToCart(
-                        stocks.stock.game,
-                        stocks.stock.platform,
-                        true
-                      )
-                    }
-                  >
-                    -
-                  </button>
-                  {stocks.quantity}
-                  <button
-                    onClick={() =>
-                      handleAddToCart(stocks.stock.game, stocks.stock.platform)
-                    }
-                  >
-                    +
-                  </button>
-                </p>
-              </div>
-            ))}
-          </article>
-        ))}
+          {data.map((order) => (
+            <article className="pedidos" key={order.idorder}>
+              <h2 className="idTittle">IdOrder</h2>
+              <p className="idOrder">{order.idorder}</p>
+              <h2 className="statusTittle">Estado del pedido</h2>
+              <p className="status">{order.status.name}</p>
+              {order.stocks.map((stocks) => (
+                <div key={stocks.idgame}>
+                  <h3 className="gameTittle">Game</h3>
+                  <img
+                    className="imgGame"
+                    src={stocks.stock.game.cover}
+                    alt={stocks.stock.game.cover}
+                  />
+                  <p className="game">{stocks.stock.game.name}</p>
+                  <h3 className="platformTittle">Platform</h3>
+                  <p className="platform">{stocks.stock.platform}</p>
+                  <h3 className="priceTittle">Price</h3>
+                  <p className="price">{stocks.stock.price / 100}€</p>
+                  <h3 className="quantityTittle">Quantity</h3>
+                  <p className="quantity">
+                    <button
+                      onClick={() =>
+                        handleAddToCart(
+                          stocks.stock.game,
+                          stocks.stock.platform,
+                          true
+                        )
+                      }
+                    >
+                      -
+                    </button>
+                    {stocks.quantity}
+                    <button
+                      onClick={() =>
+                        handleAddToCart(
+                          stocks.stock.game,
+                          stocks.stock.platform
+                        )
+                      }
+                    >
+                      +
+                    </button>
+                  </p>
+                </div>
+              ))}
+            </article>
+          ))}
         </div>
       </div>
     );

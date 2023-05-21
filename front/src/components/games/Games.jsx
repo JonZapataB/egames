@@ -94,7 +94,6 @@ const Games = () => {
               />
             )}
           </div>
-          <GamesByPlatform data={data} />
         </div>
       </div>
     );

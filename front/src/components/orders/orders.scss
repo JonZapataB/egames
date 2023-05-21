@@ -1,8 +1,15 @@
-.pedidos{
-    display:grid;
-    grid-template-columns: repeat(4, 10fr);
-    margin: 50px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
+.pedidos {
+  display: grid;
+  grid-template-columns: repeat(4, 10fr);
+  margin: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+img {
+  width: 70%;
+  height: 70%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
 }
