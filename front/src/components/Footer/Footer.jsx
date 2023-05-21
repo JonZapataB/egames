@@ -38,16 +38,32 @@ const Footer = () => {
               </span>
             </div>
             <div className="socials">
-              <Link to="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <Link
+                to="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                target="_blank"
+                /* rel="noopener noreferrer" */ // esto es para que no se pueda acceder a la pagina desde la que se ha abierto el enlace
+              >
                 <i className="fab fa-facebook"></i>
               </Link>
-              <Link to="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <Link
+                to="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                target="_blank"
+                /* rel="noopener noreferrer" */
+              >
                 <i className="fab fa-instagram"></i>
               </Link>
-              <Link to="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <Link
+                to="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                target="_blank"
+                /* rel="noopener noreferrer" */
+              >
                 <i className="fab fa-twitter"></i>
               </Link>
-              <Link to="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              <Link
+                to="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                target="_blank"
+                /* rel="noopener noreferrer" */
+              >
                 <i className="fab fa-youtube"></i>
               </Link>
             </div>
