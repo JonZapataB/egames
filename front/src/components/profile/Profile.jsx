@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
+import "./Profile.scss";
 
 const Profile = () => {
   const [data, setData] = useState([]);
@@ -104,7 +105,7 @@ const Profile = () => {
   return (
     <div>
       <NavBar />
-      <h1>Tu perfil</h1>
+      <h1 className="tuperfil">Tu perfil</h1>
 
       <br />
       {!data.userInfo && (
@@ -124,7 +125,7 @@ const Profile = () => {
       {data.userInfo && (
         <div>
           {data.userInfo && (
-            <div>
+            <div className="datos">
               <h2>Nombre: {data.userInfo.name}</h2>
               <h2>Apellido: {data.userInfo.lastname}</h2>
               <h2>Email: {data.email}</h2>

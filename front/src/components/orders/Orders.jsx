@@ -78,27 +78,28 @@ const Orders = () => {
     return (
       <div>
         <NavBar></NavBar>
+        <h1 className="pedidos">Pedidos</h1>
         <div className="total">
           {data.map((order) => (
             <article className="pedidos" key={order.idorder}>
-              <h2 className="idTittle">IdOrder</h2>
+              <h2 className="idTittle tittle">IdOrder</h2>
               <p className="idOrder">{order.idorder}</p>
-              <h2 className="statusTittle">Estado del pedido</h2>
+              <h2 className="statusTittle tittle">Estado del pedido</h2>
               <p className="status">{order.status.name}</p>
               {order.stocks.map((stocks) => (
                 <div key={stocks.idgame}>
-                  <h3 className="gameTittle">Game</h3>
+                  <h3 className="gameTittle tittle">Game</h3>
                   <img
                     className="imgGame"
                     src={stocks.stock.game.cover}
                     alt={stocks.stock.game.cover}
                   />
                   <p className="game">{stocks.stock.game.name}</p>
-                  <h3 className="platformTittle">Platform</h3>
+                  <h3 className="platformTittle tittle">Platform</h3>
                   <p className="platform">{stocks.stock.platform}</p>
-                  <h3 className="priceTittle">Price</h3>
+                  <h3 className="priceTittle tittle">Price</h3>
                   <p className="price">{stocks.stock.price / 100}€</p>
-                  <h3 className="quantityTittle">Quantity</h3>
+                  <h3 className="quantityTittle tittle">Quantity</h3>
                   <p className="quantity">
                     <button
                       onClick={() =>
