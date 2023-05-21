@@ -78,9 +78,14 @@ const Games = () => {
             <button onClick={() => setPlatform("Nintendo Switch")}>
               Nintendo Switch
             </button>
+            <button onClick={() => setPlatform("Play Station 4")}>
+              Play Station 4
+            </button>
             <button onClick={() => setPlatform("Play Station 5")}>
               Play Station 5
             </button>
+            <button onClick={() => setPlatform("Xbox One")}>Xbox One</button>
+
             <button onClick={() => setPlatform("Xbox Series X")}>
               Xbox Series X
             </button>
