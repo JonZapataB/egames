@@ -108,55 +108,94 @@ const Profile = () => {
   return (
     <div>
       <NavBar />
-      <h1>Tu perfil</h1>
+      <h1 className="tuPerfil">Tu perfil</h1>
       {data.userInfo && (
         <div>
           <Shipping step1 step2></Shipping>
-          <h2>Nombre: {data.userInfo.name}</h2>
-          <h2>Apellido: {data.userInfo.lastname}</h2>
-          <h2>Email: {data.email}</h2>
-          <h2>Dirección: {data.userInfo.address}</h2>
-          <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
+          <div className="datosAll">
+            <h2>Nombre: {data.userInfo.name}</h2>
+            <h2>Apellido: {data.userInfo.lastname}</h2>
+            <h2>Email: {data.email}</h2>
+            <h2>Dirección: {data.userInfo.address}</h2>
+            <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
+          </div>
         </div>
       )}
       <br />
       {!data.userInfo && (
-        <form action="" onSubmit={createUserInfo}>
-          <label htmlFor="name">Nombre </label>
-          <input type="text" name="name" id="name" />
-          <label htmlFor="lastname">Apellido </label>
-          <input type="text" name="lastname" id="lastname" />
-          <label htmlFor="address">Dirección </label>
-          <input type="text" name="address" id="address" />
-          <label htmlFor="phoneNumber">Teléfono </label>
-          <input type="tel" name="phoneNumber" id="phoneNumber" />
-          <input type="submit" value="Guardar" />
+        <form className="CrearInfo" action="" onSubmit={createUserInfo}>
+          <label className="textoLogin" htmlFor="name">
+            Nombre{" "}
+          </label>
+          <input className="cajaLogin" type="text" name="name" id="name" />
+          <label className="textoLogin" htmlFor="lastname">
+            Apellido{" "}
+          </label>
+          <input
+            className="cajaLogin"
+            type="text"
+            name="lastname"
+            id="lastname"
+          />
+          <label className="textoLogin" htmlFor="address">
+            Dirección{" "}
+          </label>
+          <input
+            className="cajaLogin"
+            type="text"
+            name="address"
+            id="address"
+          />
+          <label className="textoLogin" htmlFor="phoneNumber">
+            Teléfono{" "}
+          </label>
+          <input
+            className="cajaLogin"
+            type="tel"
+            name="phoneNumber"
+            id="phoneNumber"
+          />
+          <input className="botonEditar" type="submit" value="Guardar" />
         </form>
       )}
       <br />
       {data.userInfo && (
-        <div>
-          <p>¿Quieres cambiar tu perfil?</p>
+        <div className="updateDatos">
+          <p className="pregunta">¿Quieres cambiar tu perfil?</p>
           <form action="" onSubmit={updateUserInfo}>
-            <label htmlFor="name">Nombre </label>
-            <input type="text" name="name" id="name" />
-            <label htmlFor="lastname">Apellido </label>
-            <input type="text" name="lastname" id="lastname" />
-            <label htmlFor="address">Dirección </label>
-            <input type="text" name="address" id="address" />
-            <label htmlFor="phoneNumber">Teléfono </label>
-            <input type="tel" name="phoneNumber" id="phoneNumber" />
-            <input type="submit" value="Editar" />
+            <label className="textoLogin" htmlFor="name">
+              Nombre{" "}
+            </label>
+            <input className="cajaLogin" type="text" name="name" id="name" />
+            <label className="textoLogin" htmlFor="lastname">
+              Apellido{" "}
+            </label>
+            <input
+              className="cajaLogin"
+              type="text"
+              name="lastname"
+              id="lastname"
+            />
+            <label className="textoLogin" htmlFor="address">
+              Dirección{" "}
+            </label>
+            <input
+              className="cajaLogin"
+              type="text"
+              name="address"
+              id="address"
+            />
+            <label className="textoLogin" htmlFor="phoneNumber">
+              Teléfono{" "}
+            </label>
+            <input
+              className="cajaLogin"
+              type="tel"
+              name="phoneNumber"
+              id="phoneNumber"
+            />
+            <input className="botonEditar" type="submit" value="Editar" />
           </form>
-        </div>
-      )}
-      {data.userInfo && (
-        <div>
-          <h2>Nombre: {data.userInfo.name}</h2>
-          <h2>Apellido: {data.userInfo.lastname}</h2>
-          <h2>Email: {data.email}</h2>
-          <h2>Dirección: {data.userInfo.address}</h2>
-          <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
         </div>
       )}
       <Footer />

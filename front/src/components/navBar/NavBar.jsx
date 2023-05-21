@@ -38,7 +38,7 @@ function NavScrollExample() {
           </NavDropdown.Item>
         </NavDropdown>
         <Navbar.Brand as={Link} to="/">
-          HyruleShop
+          Hyrule Shop
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

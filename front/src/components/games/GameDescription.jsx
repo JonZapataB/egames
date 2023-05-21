@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "./GamesDescripption.scss";
 
 const GameDescription = ({ game, show, handleClose }) => {
   const navigate = useNavigate();
@@ -51,18 +52,27 @@ const GameDescription = ({ game, show, handleClose }) => {
           </Modal.Header>
           <Modal.Body>
             <article>
-              <img src={game.cover} alt={game.name} />
-              <p>{game.release_date}</p>
+              <img
+                className="descriptionImg"
+                src={game.cover}
+                alt={game.name}
+              />
               <p>{game.description}</p>
+              <p>{game.release_date}</p>
               <div>
                 {game.stocks.map((element) => (
                   <div>
                     <p>{element.platform}</p>
                     <p>{element.price / 100}€</p>
                     {element.stock === 0 ? (
-                      <button disabled>No quedan unidades</button>
+                      <button className="botonAñadir" disabled>
+                        No quedan unidades
+                      </button>
                     ) : (
-                      <button onClick={() => handleAddToCart(element.platform)}>
+                      <button
+                        className="botonAñadir"
+                        onClick={() => handleAddToCart(element.platform)}
+                      >
                         Añadir al carrito
                       </button>
                     )}
@@ -73,12 +83,17 @@ const GameDescription = ({ game, show, handleClose }) => {
           </Modal.Body>
           <Modal.Footer>
             {showMessage && <p>Juego añadido</p>}
-            <Button variant="secondary" onClick={handleClose}>
+            <Button
+              className="botonCerrar"
+              variant="secondary"
+              onClick={handleClose}
+            >
               Cerrar
             </Button>
             {showMessage && (
               //si el juego se ha añadido al carrito, se muestra el botón de ir al carrito y te lleva a la ruta /orders
               <Button
+                className="botonIr"
                 onClick={() => {
                   navigate("/orders");
                 }}

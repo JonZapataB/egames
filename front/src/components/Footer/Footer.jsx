@@ -72,7 +72,11 @@ const Footer = () => {
             {showMessage && <AboutUs />}
             <br />
             {!hideButton && (
-              <button onClick={handleShowMessage} className="btn btn-big">
+              <button
+                onClick={handleShowMessage}
+                className="btn btn-big"
+                id="sobrenosotros"
+              >
                 Sobre nosotros
               </button>
             )}
