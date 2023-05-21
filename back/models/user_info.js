@@ -8,7 +8,7 @@ const UserInfo = connection.define(
     iduser: {
       type: Sequelize.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
+      foreignKey: true,
     },
     name: {
       type: Sequelize.STRING(45),

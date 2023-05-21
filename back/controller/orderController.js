@@ -69,7 +69,9 @@ AS `stock.idgame`, `stock`.`price` \
  ON `orders_has_stock`.`idgame` = `stock`.`idgame`AND `orders_has_stock`.`platform` = `stock`.`platform` \
  LEFT OUTER JOIN `games` AS `stock->game` \
  ON `stock`.`idgame` = `stock->game`.`idgame` \
- WHERE `orders_has_stock`.`idorder` = 1;",
+ WHERE `orders_has_stock`.`idorder` = " +
+          order.idorder +
+          ";",
         {
           nest: true,
           type: sequelize.QueryTypes.SELECT,
@@ -116,7 +118,9 @@ LEFT OUTER JOIN `stock` AS `stock` \
 ON `orders_has_stock`.`idgame` = `stock`.`idgame`AND `orders_has_stock`.`platform` = `stock`.`platform` \
 LEFT OUTER JOIN `games` AS `stock->game` \
 ON `stock`.`idgame` = `stock->game`.`idgame` \
-WHERE `orders_has_stock`.`idorder` = 1;",
+WHERE `orders_has_stock`.`idorder` =  " +
+        order.idorder +
+        ";",
       {
         nest: true,
         type: sequelize.QueryTypes.SELECT,

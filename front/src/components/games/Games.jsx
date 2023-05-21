@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
-import GamesByPlatform from "./GamesByPlatform";
 import GameDescription from "./GameDescription";
 import NavBar from "../navBar/NavBar";
 import "./Games.scss";
+
 const Games = () => {
   const [games, setGames] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
   const [platform, setPlatform] = useState("All");
   const [sorting, setSorting] = useState("Alphabetical");
   const [game, setGame] = useState(null);
+  const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
     const gameToBeBought = JSON.parse(sessionStorage.getItem("gameToBeBought"));
@@ -28,6 +29,16 @@ const Games = () => {
   const handleClose = () => {
     setGame(null);
   };
+
+  useEffect(() => {
+    if (searchWord.length < 3 && searchWord !== "") {
+      return;
+    }
+    const searchedGames = games.filter((game) => {
+      return game.name.toLowerCase().includes(searchWord.toLowerCase());
+    });
+    setGames(searchedGames);
+  }, [searchWord]);
 
   const getData = async () => {
     const response = await Axios.get("http://localhost:3011/api/games");
@@ -75,7 +86,16 @@ const Games = () => {
 
   if (games.length > 0)
     return (
-      <>
+      <div>
+        <div>
+          <input
+            type="text"
+            placeholder="Buscar..."
+            value={searchWord}
+            onChange={(e) => setSearchWord(e.target.value)}
+            className="searcher"
+          />
+        </div>
         <div>
           <DatesGameCarousel
             data={sortByReleaseDate(games)}
@@ -120,7 +140,7 @@ const Games = () => {
             )}
           </div>
         </div>
-      </>
+      </div>
     );
   else return <div>Cargando</div>;
 };
