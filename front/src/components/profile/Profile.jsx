@@ -123,6 +123,15 @@ const Profile = () => {
       <br />
       {data.userInfo && (
         <div>
+          {data.userInfo && (
+            <div>
+              <h2>Nombre: {data.userInfo.name}</h2>
+              <h2>Apellido: {data.userInfo.lastname}</h2>
+              <h2>Email: {data.email}</h2>
+              <h2>Dirección: {data.userInfo.address}</h2>
+              <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
+            </div>
+          )}
           <p>¿Quieres cambiar tu perfil?</p>
           <form action="" onSubmit={updateUserInfo}>
             <label htmlFor="name">Nombre </label>
@@ -135,15 +144,6 @@ const Profile = () => {
             <input type="tel" name="phoneNumber" id="phoneNumber" />
             <input type="submit" value="Editar" />
           </form>
-        </div>
-      )}
-      {data.userInfo && (
-        <div>
-          <h2>Nombre: {data.userInfo.name}</h2>
-          <h2>Apellido: {data.userInfo.lastname}</h2>
-          <h2>Email: {data.email}</h2>
-          <h2>Dirección: {data.userInfo.address}</h2>
-          <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
         </div>
       )}
     </div>
