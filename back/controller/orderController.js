@@ -4,6 +4,8 @@ import Games from "../models/games.js";
 import Stock from "../models/stock.js";
 import Status from "../models/status.js";
 import sequelize from "../config/db.js";
+import User from "../models/users.js";
+import UserInfo from "../models/user_info.js";
 
 const getAll = async (req, res) => {
   try {
@@ -53,7 +55,30 @@ const getByUserId = async (req, res) => {
         iduser: iduser,
       },
       attributes: ["idorder", "iduser", "idstatus"],
-      include: [{ model: Status, attributes: ["name"] }],
+      include: [
+        { model: Status, attributes: ["name"] },
+        {
+          model: User,
+          include: [
+            {
+              model: UserInfo,
+            },
+          ],
+        },
+        {
+          model: Orders_has_stock,
+          include: [
+            {
+              model: Stock,
+              include: [
+                {
+                  model: Games,
+                },
+              ],
+            },
+          ],
+        },
+      ],
     });
     console.log("orders20", orders);
     let stocks = orders.map(async (order) => {
@@ -326,15 +351,51 @@ const subtractGame = async (req, res) => {
   }
 };
 
-const deleteGame = async (req, res) => {
+/* const deleteGame = async (req, res) => {
+  //
   try {
-    const { idorder } = req.params;
+    const { idorder } = req.body;
     let order = await Order.destroy({
       where: {
         idorder: idorder,
       },
     });
     res.send(order);
+  } catch (error) {
+    res.status(500).send({
+      message: error.message || "Some error ocurred while retrieving stock.",
+    });
+  }
+}; */
+
+const deleteGame = async (req, res) => {
+  try {
+    let { idgame, platform } = req.body;
+    const iduser = req.user.id;
+    let order = await pendienteByUserId(iduser);
+    if (order[0]) {
+      return res.status(500).send({
+        message: order[0],
+      });
+    }
+    order = order[1];
+    if (!order) {
+      return res.status(400).send({
+        message: "No hay orden pendiente",
+      });
+    }
+    let gameExist = await Orders_has_stock.findOne({
+      where: {
+        idorder: order.idorder,
+        idgame: idgame,
+        platform: platform,
+      },
+    });
+    if (!gameExist) {
+      return res.status(400).send({
+        message: "No existe ese juego en la orden",
+      });
+    }
   } catch (error) {
     res.status(500).send({
       message: error.message || "Some error ocurred while retrieving stock.",

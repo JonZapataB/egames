@@ -56,9 +56,13 @@ const GameDescription = ({ game, show, handleClose }) => {
                   <div>
                     <p>{element.platform}</p>
                     <p>{element.price / 100}€</p>
-                    <button onClick={() => handleAddToCart(element.platform)}>
-                      Añadir al carrito
-                    </button>
+                    {element.stock === 0 ? (
+                      <button disabled>No quedan unidades</button>
+                    ) : (
+                      <button onClick={() => handleAddToCart(element.platform)}>
+                        Añadir al carrito
+                      </button>
+                    )}
                   </div>
                 ))}
               </div>

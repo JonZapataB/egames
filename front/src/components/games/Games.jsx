@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
 import GameDescription from "./GameDescription";
-import NavBar from "../navBar/NavBar";
 import "./Games.scss";
 
 const Games = () => {
