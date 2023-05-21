@@ -17,7 +17,7 @@ const Footer = () => {
         <div className="footer-content">
           <div className="footer-section about">
             <h1 className="logo-text">
-              <span>e</span>Games
+              <span></span>Hyrule Shop
             </h1>
             <div className="contact">
               <span>
@@ -101,7 +101,9 @@ const Footer = () => {
             </form>
           </div>
         </div>
-        <div className="footer-bottom">&copy; eGames | Designed by eGames</div>
+        <div className="footer-bottom">
+          &copy; Hyrule Shop | Designed by Hyrule Shop
+        </div>
       </div>
     </footer>
   );
