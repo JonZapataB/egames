@@ -65,19 +65,6 @@ const getByUserId = async (req, res) => {
             },
           ],
         },
-        {
-          model: Orders_has_stock,
-          include: [
-            {
-              model: Stock,
-              include: [
-                {
-                  model: Games,
-                },
-              ],
-            },
-          ],
-        },
       ],
     });
     console.log("orders20", orders);
@@ -88,7 +75,9 @@ AS `stock.idgame`, `stock`.`price` \
  AS `stock.price`, `stock`.`platform` \
  AS `stock.platform`, `stock->game`.`idgame` \
  AS `stock.game.idgame`, `stock->game`.`name` \
- AS `stock.game.name` \
+ AS `stock.game.name` ,\
+ `stock->game`.`cover` \
+ AS `stock.game.cover` \
  FROM `orders_has_stock` AS `orders_has_stock` \
  LEFT OUTER JOIN `stock` AS `stock` \
  ON `orders_has_stock`.`idgame` = `stock`.`idgame`AND `orders_has_stock`.`platform` = `stock`.`platform` \

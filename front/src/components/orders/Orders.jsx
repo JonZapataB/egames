@@ -130,13 +130,13 @@ const Orders = () => {
         <div className="total">
           <Row>
             <Col md={8}>
-              {data[0].orders_has_stocks.length === 0 ? (
+              {data[0].stocks.length === 0 ? (
                 <h3>
                   No tienes pedidos. <Link to="/">Ir a la tienda</Link>
                 </h3>
               ) : (
                 <ListGroup variant="flush">
-                  {data[0].orders_has_stocks.map((order) => (
+                  {data[0].stocks.map((order) => (
                     <ListGroup.Item key={order.idgame}>
                       <Row>
                         <Col md={4}>

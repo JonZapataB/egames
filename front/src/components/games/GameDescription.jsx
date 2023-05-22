@@ -83,23 +83,23 @@ const GameDescription = ({ game, show, handleClose }) => {
           </Modal.Body>
           <Modal.Footer>
             {showMessage && <p>Juego añadido</p>}
-            <Button
+            <button
               className="botonCerrar"
               variant="secondary"
               onClick={handleClose}
             >
               Cerrar
-            </Button>
+            </button>
             {showMessage && (
               //si el juego se ha añadido al carrito, se muestra el botón de ir al carrito y te lleva a la ruta /orders
-              <Button
+              <button
                 className="botonIr"
                 onClick={() => {
                   navigate("/orders");
                 }}
               >
                 Ir al Pedido
-              </Button>
+              </button>
             )}
           </Modal.Footer>
         </Modal>
