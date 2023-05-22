@@ -1,16 +1,9 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import AboutUs from "./AboutUs";
+import { useNavigate } from "react-router-dom";
 import "./Footer.scss";
+import Button from "react-bootstrap/Button";
 const Footer = () => {
-  const [showMessage, setShowMessage] = useState(false);
-  const [hideButton, setHideButton] = useState(false);
-
-  const handleShowMessage = () => {
-    setShowMessage(true);
-    setHideButton(true);
-  };
-
+  const navigate = useNavigate();
   return (
     <footer>
       <div className="footer">
@@ -21,8 +14,7 @@ const Footer = () => {
             </h1>
             <div className="contact">
               <span>
-                <i className="fas fa-map-marker-alt"></i> &nbsp;
-                {/* esto deja un hueco a la derecha del icono */} Bilbao
+                <i className="fas fa-map-marker-alt"></i> &nbsp; Bilbao
                 <br />
                 <i className="fas fa-phone"></i> &nbsp; +34 666 666 666
               </span>
@@ -68,20 +60,16 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          <div className="footer-section links">
-            {showMessage && <AboutUs />}
-            <br />
-            {!hideButton && (
-              <button
-                onClick={handleShowMessage}
-                className="btn btn-big"
-                id="sobrenosotros"
-              >
-                Sobre nosotros
-              </button>
-            )}
-            <br />
-          </div>
+          <Button
+            variant="link"
+            className="btn btn-link"
+            onClick={() => {
+              navigate("/aboutus");
+            }}
+          >
+            Sobre Nosotros
+          </Button>
+
           <div className="footer-section contact-form">
             <h2>Contactanos</h2>
             <br />
@@ -106,7 +94,13 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          &copy; Hyrule Shop | Designed by Hyrule Shop
+          &copy; Hyrule &nbsp;
+          {/* &copy añade el simbolo de copyright y &nbsp crea un espacio a la derecha */}
+          <img
+            className="Triforce"
+            src="https://img.icons8.com/?size=512&id=19602&format=png"
+          ></img>
+          &nbsp; Shop | Designed by Hyrule Shop
         </div>
       </div>
     </footer>

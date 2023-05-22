@@ -34,7 +34,7 @@ function NavScrollExample() {
             Videojuegos
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="#sobrenosotros">
+          <NavDropdown.Item as={Link} to="/aboutus">
             Sobre Nosotros
           </NavDropdown.Item>
         </NavDropdown>

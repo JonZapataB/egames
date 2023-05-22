@@ -1,3 +1,54 @@
-.textoo {
-  color: rgb(0, 0, 0);
+section {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 40px 20px;
+}
+
+h2 {
+  font-size: 28px; // Aumentar tamaño de fuente
+  margin-bottom: 10px;
+  //centrar texto
+  text-align: center;
+}
+
+p {
+  margin-bottom: 10px;
+  font-size: 16px; // Aumentar tamaño de fuente
+  text-align: center;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.profile h3 {
+  font-size: 20px; // Aumentar tamaño de fuente
+  margin-bottom: 5px;
+}
+
+.profile p {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  font-size: 16px; // Aumentar tamaño de fuente
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #007bff;
+  }
 }
