@@ -3,6 +3,7 @@ import Shipping from "../shipping/Shipping";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import NavBar from "../navBar/NavBar";
+import "./Payment.scss";
 
 const Payment = () => {
   const [paymentMethodName, setPaymentMethodName] = useState("");
@@ -26,12 +27,12 @@ const Payment = () => {
     <div>
       <NavBar></NavBar>
       <Shipping step1 step2 step3></Shipping>
-      <h1>Pago</h1>
       <div className="conainer small-conainer">
-        <h1>Método de pago</h1>
+        <h1 className="metodoPago">Método de pago</h1>
         <Form onSubmit={submitHandler}>
-          <div>
+          <div className="metodoPaypal">
             <Form.Check
+              className="payPal"
               type="radio"
               label="PayPal"
               id="PayPal"
@@ -40,8 +41,9 @@ const Payment = () => {
               onChange={(e) => setPaymentMethodName(e.target.value)}
             />
           </div>
-          <div>
+          <div className="metodoStripe">
             <Form.Check
+              className="stripe"
               type="radio"
               label="Stripe"
               id="Stripe"
@@ -51,7 +53,9 @@ const Payment = () => {
             />
           </div>
           <div>
-            <button type="submit">Continuar</button>
+            <button className="botonContinuar" type="submit">
+              Continuar
+            </button>
           </div>
         </Form>
       </div>

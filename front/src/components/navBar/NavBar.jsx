@@ -30,15 +30,16 @@ function NavScrollExample() {
           title={<HiMenu />}
           id="navbarScrollingDropdown"
         >
-          <NavDropdown.Item href="#novedades">Novedades</NavDropdown.Item>
-          <NavDropdown.Item href="#videojuegos">Videojuegos</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to="/">
+            Videojuegos
+          </NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item as={Link} to="/aboutus">
             Sobre Nosotros
           </NavDropdown.Item>
         </NavDropdown>
         <Navbar.Brand as={Link} to="/">
-          HyruleShop
+          Hyrule Shop
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

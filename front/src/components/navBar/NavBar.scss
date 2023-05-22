@@ -67,6 +67,7 @@
     display: flex !important;
     justify-content: left !important;
     text-align: left !important;
+    font-size: 40px !important;
   }
 
   .perfil,
@@ -81,5 +82,32 @@
     margin-right: 0px;
     padding-left: 0px;
     padding-right: 0px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .navbar-brand {
+    margin-left: 0px !important;
+    display: flex !important;
+    justify-content: left !important;
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 1805px) {
+  .navbar-brand {
+    margin-left: 0px !important;
+    display: flex !important;
+    justify-content: left !important;
+    text-align: left !important;
+  }
+}
+
+@media (max-width: 1580px) {
+  .navbar-brand {
+    margin-left: 00px !important;
+    display: flex !important;
+    justify-content: left !important;
+    text-align: left !important;
   }
 }

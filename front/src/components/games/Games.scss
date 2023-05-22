@@ -97,3 +97,15 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
+
+@media (max-width: 768px) {
+  .boxGames {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: 50px;
+  }
+  .filterGames {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
