@@ -112,96 +112,60 @@ const Profile = () => {
       {data.userInfo && (
         <div>
           <Shipping step1 step2></Shipping>
-          <div className="datosAll">
-            <h2>Nombre: {data.userInfo.name}</h2>
-            <h2>Apellido: {data.userInfo.lastname}</h2>
-            <h2>Email: {data.email}</h2>
-            <h2>Dirección: {data.userInfo.address}</h2>
-            <h2>Teléfono: {data.userInfo.phoneNumber}</h2>
+          <div className="profile-container">
+            <h2>
+              Nombre: <span>{data.userInfo.name}</span>
+            </h2>
+            <h2>
+              Apellido: <span>{data.userInfo.lastname}</span>
+            </h2>
+            <h2>
+              Email: <span>{data.email}</span>
+            </h2>
+            <h2>
+              Dirección: <span>{data.userInfo.address}</span>
+            </h2>
+            <h2>
+              Teléfono: <span>{data.userInfo.phoneNumber}</span>
+            </h2>
           </div>
         </div>
       )}
       <br />
       {!data.userInfo && (
         <div className="login-container">
-          <form className="CrearInfo" action="" onSubmit={createUserInfo}>
-            <label className="textoLogin" htmlFor="name">
-              Nombre{" "}
-            </label>
-            <input className="cajaLogin" type="text" name="name" id="name" />
-            <label className="textoLogin" htmlFor="lastname">
-              Apellido{" "}
-            </label>
-            <input
-              className="cajaLogin"
-              type="text"
-              name="lastname"
-              id="lastname"
-            />
-            <label className="textoLogin" htmlFor="address">
-              Dirección{" "}
-            </label>
-            <input
-              className="cajaLogin"
-              type="text"
-              name="address"
-              id="address"
-            />
-            <label className="textoLogin" htmlFor="phoneNumber">
-              Teléfono{" "}
-            </label>
-            <input
-              className="cajaLogin"
-              type="tel"
-              name="phoneNumber"
-              id="phoneNumber"
-            />
-            <input className="botonEditar" type="submit" value="Guardar" />
+          <h1>Crea tu información de usuario</h1>
+          <form action="" onSubmit={createUserInfo} className="form">
+            <label htmlFor="name">Nombre </label>
+            <input type="text" name="name" id="name" required />
+            <label htmlFor="lastname">Apellido </label>
+            <input type="text" name="lastname" id="lastname" required />
+            <label htmlFor="address">Dirección </label>
+            <input type="text" name="address" id="address" required />
+            <label htmlFor="phoneNumber">Teléfono </label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" required />
+            <button type="submit">Guardar</button>
           </form>
         </div>
       )}
       <br />
       {data.userInfo && (
-        <div className="updateDatos">
-          <div className="login-container">
-            <p className="pregunta">¿Quieres cambiar tu perfil?</p>
-            <form action="" onSubmit={updateUserInfo}>
-              <label className="textoLogin" htmlFor="name">
-                Nombre{" "}
-              </label>
-              <input className="cajaLogin" type="text" name="name" id="name" />
-              <label className="textoLogin" htmlFor="lastname">
-                Apellido{" "}
-              </label>
-              <input
-                className="cajaLogin"
-                type="text"
-                name="lastname"
-                id="lastname"
-              />
-              <label className="textoLogin" htmlFor="address">
-                Dirección{" "}
-              </label>
-              <input
-                className="cajaLogin"
-                type="text"
-                name="address"
-                id="address"
-              />
-              <label className="textoLogin" htmlFor="phoneNumber">
-                Teléfono{" "}
-              </label>
-              <input
-                className="cajaLogin"
-                type="tel"
-                name="phoneNumber"
-                id="phoneNumber"
-              />
-              <input className="botonEditar" type="submit" value="Editar" />
-            </form>
-          </div>
+        <div className="login-container">
+          <h1>¿Quieres cambiar tu perfil?</h1>
+          <form action="" onSubmit={updateUserInfo} className="form">
+            <label htmlFor="name">Nombre </label>
+            <input type="text" name="name" id="name" />
+            <label htmlFor="lastname">Apellido </label>
+            <input type="text" name="lastname" id="lastname" />
+            <label htmlFor="address">Dirección </label>
+            <input type="text" name="address" id="address" />
+            <label htmlFor="phoneNumber">Teléfono </label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" />
+            <button type="submit">Editar</button>
+          </form>
         </div>
       )}
+
       <Footer />
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../navBar/NavBar";
-
+import Footer from "../Footer/Footer";
 import Axios from "axios";
 import "./Register.scss";
 
@@ -71,21 +71,21 @@ const Register = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <br />
-      <h1>Registrate</h1>
-      <br />
-      <form action="" onSubmit={submit}>
-        <label htmlFor="email">Email {errorEmail}</label>
-        <input type="email" name="email" id="email" />
-        <br />
-        <br />
-        <label htmlFor="password">Password {errorPassword}</label>
-        <input type="password" name="password" id="password" />
-        <br />
-        <button type="submit">Registrarse</button>
-      </form>
-      <p>{requestError}</p>
-      <a href="http://localhost:3011/api/auth/google">Registrarse con Google</a>
+      <div className="login-container">
+        <h1>Registrate</h1>
+        <form action="" onSubmit={submit} className="form">
+          <label htmlFor="email">Email {errorEmail}</label>
+          <input type="email" name="email" id="email" />
+          <label htmlFor="password">Password {errorPassword}</label>
+          <input type="password" name="password" id="password" />
+          <button type="submit">Registrarse</button>
+        </form>
+        <p>{requestError}</p>
+        <a href="http://localhost:3011/api/auth/google">
+          Registrarse con Google
+        </a>
+      </div>
+      <Footer></Footer>
     </div>
   );
 };

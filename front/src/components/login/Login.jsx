@@ -54,11 +54,11 @@ const Login = () => {
     <div>
       <NavBar></NavBar>
       <br />
-      <div className="login">
-        <h1>Login</h1>
-        <br />
-        <p>{errorMessage}</p>
-        <form action="" onSubmit={submit}>
+      <br />
+      <p>{errorMessage}</p>
+      <div className="login-container">
+        <h1 className="login-tittle">Login</h1>
+        <form action="" onSubmit={submit} className="form">
           <label htmlFor="email">Email </label>
           <input type="email" name="email" id="email" />
           <br />
