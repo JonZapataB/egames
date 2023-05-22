@@ -51,6 +51,23 @@ img {
   transition: transform 0.5s;
 }
 
+.botonSubir {
+  position: fixed;
+  right: 2rem;
+  width: 64px;
+  height: 64px;
+  bottom: 3rem;
+  border-radius: 50px;
+  color: #fff;
+  background-color: #58b09c;
+  transition: 0.5s;
+  :hover {
+    background-color: #4a442d;
+    cursor: pointer;
+    color: #fff;
+  }
+}
+
 /* Barra de búsqueda */
 .searcher {
   background-color: #58b09c;
@@ -108,4 +125,16 @@ img {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+}
+.scrollButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
 }
