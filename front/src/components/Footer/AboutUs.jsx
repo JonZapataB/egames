@@ -97,19 +97,6 @@ const AboutUs = () => {
             desaparecerlos con un simple chasquido!
           </p>
         </div>
-        {/* <div className="profile">
-        <a
-          href="https://www.linkedin.com/in/jes%C3%BAs-cabado-edesa-developer"
-          about="_blank"
-        >
-          <img
-            src="https://ca.slack-edge.com/T04E5G097KJ-U04HSQH7ALF-dd7a1a662f2c-512"
-            alt="Nombre del perfil"
-          />
-        </a>
-        <h3>Danel Lafuente</h3>
-        <p>Danel es nuestro ninja del código, un maestro en el arte del desarrollo web fullstack. Con su velocidad y agilidad, es capaz de escribir líneas de código más rápido que un rayo. Siempre está un paso adelante, creando funciones complejas con una sola mano mientras se toma un sorbo de su café energético. Cuando no está luchando contra las demandas del proyecto, se relaja practicando artes marciales y jugando a juegos de lucha.</p>
-      </div> */}
       </section>
       <Footer />
     </>
