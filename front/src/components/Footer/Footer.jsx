@@ -1,16 +1,9 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import AboutUs from "./AboutUs";
+import { useNavigate } from "react-router-dom";
 import "./Footer.scss";
+import Button from "react-bootstrap/Button";
 const Footer = () => {
-  const [showMessage, setShowMessage] = useState(false);
-  const [hideButton, setHideButton] = useState(false);
-
-  const handleShowMessage = () => {
-    setShowMessage(true);
-    setHideButton(true);
-  };
-
+  const navigate = useNavigate();
   return (
     <footer>
       <div className="footer">
@@ -67,16 +60,16 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          <div className="footer-section links">
-            {showMessage && <AboutUs />}
-            <br />
-            {!hideButton && (
-              <button onClick={handleShowMessage} className="btn btn-big">
-                Sobre nosotros
-              </button>
-            )}
-            <br />
-          </div>
+          <Button
+            variant="link"
+            className="btn btn-link"
+            onClick={() => {
+              navigate("/aboutus");
+            }}
+          >
+            Sobre Nosotros
+          </Button>
+
           <div className="footer-section contact-form">
             <h2>Contactanos</h2>
             <br />
