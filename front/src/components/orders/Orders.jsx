@@ -75,36 +75,6 @@ const Orders = () => {
     getData();
   }, []);
 
-  const handleDeleteOrder = async (idorder, game, platform) => {
-    try {
-      const idgame = game.idgame;
-      const infoUser = localStorage.getItem("infoUser");
-      console.log("infoUser", infoUser);
-      if (!infoUser) {
-        console.log("no hay infoUser");
-        sessionStorage.setItem("gameToBeBought", JSON.stringify(game));
-        navigate("/login");
-        return;
-      }
-      const token = JSON.parse(infoUser).token;
-      const response = await axios.delete(
-        `http://localhost:3011/api/orders/user/delete/${idorder}`,
-        { idgame, platform },
-        {
-          headers: { "x-access-token": token },
-        }
-      );
-      console.log("LA RESPUESTA", response);
-      getData();
-    } catch (error) {
-      console.log("El error de borrar", error);
-      if (error.response.status === 401 || error.response.status === 400) {
-        console.log("error", error.response.status);
-        navigate("/login");
-      }
-    }
-  };
-
   const getTotal = (order) => {
     let total = 0;
     order.stocks.forEach((stock) => {

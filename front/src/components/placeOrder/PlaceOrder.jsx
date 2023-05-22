@@ -41,9 +41,9 @@ const PlaceOrder = () => {
         {
           user: infoPedidoJson[0].iduser,
           paymentMethod: paymentMethod,
-          items: infoPedidoJson[0].orders_has_stocks,
+          items: infoPedidoJson[0].stocks,
           total:
-            infoPedidoJson[0].orders_has_stocks.reduce(
+            infoPedidoJson[0].stocks.reduce(
               (acc, item) => acc + item.stock.price * item.quantity,
               0
             ) / 100,
@@ -105,7 +105,7 @@ const PlaceOrder = () => {
             <Card.Body>
               <Card.Title>Artículos</Card.Title>
               <ListGroup variant="flush">
-                {infoPedidoJson[0].orders_has_stocks.map((item) => (
+                {infoPedidoJson[0].stocks.map((item) => (
                   <ListGroup.Item key={item.idgame}>
                     <Row>
                       <Col md={6}>
@@ -145,7 +145,7 @@ const PlaceOrder = () => {
                   <Row>
                     <Col>Artículos</Col>
                     <Col>
-                      {infoPedidoJson[0].orders_has_stocks.reduce(
+                      {infoPedidoJson[0].stocks.reduce(
                         (acc, item) => acc + item.quantity,
                         0
                       )}
@@ -156,7 +156,7 @@ const PlaceOrder = () => {
                   <Row>
                     <Col>Precio</Col>
                     <Col>
-                      {infoPedidoJson[0].orders_has_stocks.reduce(
+                      {infoPedidoJson[0].stocks.reduce(
                         (acc, item) => acc + item.stock.price * item.quantity,
                         0
                       ) / 100}
@@ -174,7 +174,7 @@ const PlaceOrder = () => {
                   <Row>
                     <Col>Total</Col>
                     <Col>
-                      {infoPedidoJson[0].orders_has_stocks.reduce(
+                      {infoPedidoJson[0].stocks.reduce(
                         (acc, item) => acc + item.stock.price * item.quantity,
                         0
                       ) / 100}
