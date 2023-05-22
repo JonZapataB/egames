@@ -31,13 +31,10 @@ const Games = ({ refTo }) => {
   };
 
   useEffect(() => {
-    if (searchWord.length < 3 && searchWord !== "") {
-      return;
-    }
     const searchedGames = games.filter((game) => {
       return game.name.toLowerCase().includes(searchWord.toLowerCase());
     });
-    setGames(searchedGames);
+    setFilteredGames(searchedGames);
   }, [searchWord]);
 
   const getData = async () => {
@@ -148,10 +145,10 @@ const Games = ({ refTo }) => {
             className="filtros"
             onChange={(e) => setSorting(e.target.value)}
           >
-            <option value="Alphabetical">Alphabetical</option>
-            <option value="PriceAsc">Price Ascending</option>
-            <option value="PriceDesc">Price Descending</option>
-            <option value="ReleaseDate">Release Date</option>
+            <option value="Alphabetical">Alfabético</option>
+            <option value="PriceAsc">Precio ascendente</option>
+            <option value="PriceDesc">Precio descendente</option>
+            <option value="ReleaseDate">Fecha de publicación</option>
           </select>
           <div className="boxGames">
             {filteredGames.map((game) => (

@@ -36,10 +36,14 @@ const Orders = () => {
     }
   };
 
-  const handleAddToCart = async (game, platform, subtract = false) => {
+  const handleAddToCart = async (
+    game,
+    platform,
+    subtract = false,
+    quantity = 1
+  ) => {
     try {
       const idgame = game.idgame;
-      const quantity = 1;
       const infoUser = localStorage.getItem("infoUser");
       console.log("infoUser", infoUser);
       if (!infoUser) {
@@ -193,12 +197,13 @@ const Orders = () => {
                         </div>
                         <Col md={2}>
                           <button
-                            className="botonEliminar"
+                            className="botonmas"
                             onClick={() =>
-                              handleDeleteOrder(
-                                order.idorder,
+                              handleAddToCart(
                                 order.stock.game,
-                                order.stock.platform
+                                order.stock.platform,
+                                true,
+                                order.quantity
                               )
                             }
                           >
