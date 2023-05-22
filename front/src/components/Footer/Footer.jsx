@@ -21,8 +21,7 @@ const Footer = () => {
             </h1>
             <div className="contact">
               <span>
-                <i className="fas fa-map-marker-alt"></i> &nbsp;
-                {/* esto deja un hueco a la derecha del icono */} Bilbao
+                <i className="fas fa-map-marker-alt"></i> &nbsp; Bilbao
                 <br />
                 <i className="fas fa-phone"></i> &nbsp; +34 666 666 666
               </span>
@@ -102,7 +101,13 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-bottom">
-          &copy; Hyrule Shop | Designed by Hyrule Shop
+          &copy; Hyrule &nbsp;
+          {/* &copy añade el simbolo de copyright y &nbsp crea un espacio a la derecha */}
+          <img
+            className="Triforce"
+            src="https://img.icons8.com/?size=512&id=19602&format=png"
+          ></img>
+          &nbsp; Shop | Designed by Hyrule Shop
         </div>
       </div>
     </footer>
