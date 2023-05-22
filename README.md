@@ -33,3 +33,10 @@
 <p>Antes de poder iniciar el proyecto en nuestra terminal tenemos que descargarlo. Te recomendamos utilizar SSH para hacerlo.
 <p>Una vez descargado y con la terminal abierta en la carpeta del proyecto ejecutamos un docker compose up --build.</p>
 <p>Te diriges a tu buscador de confianza y escribimos localhost:3000 en el buscador (asegurate de no tener ningun otro trabajo abierto en dicho host)
+
+<h3>Registro con Google</h3>
+<p>El primer paso es <strong>Obtener credenciales de API de Google.</strong></p> 
+<p>El segundo paso es <strong>Configurar el entorno de desarrollo en el servidor desde backend.</strong></p>
+<p><strong>Configurar el flujo de autenticación en el lado del servidor</strong> Cuando un usuario inicie sesión con Google, se generará un token de autenticación en el cliente.
+En el servidor, debes recibir y verificar el token de autenticación para asegurarte de que sea válido.</p>
+<p><strong>Implementar el flujo de inicio de sesión con Google: </strong>Puedes obtener información como el nombre, el apellido, el correo electrónico, la foto de perfil, etc</p>
