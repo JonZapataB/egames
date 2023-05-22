@@ -40,3 +40,8 @@
 <p><strong>Configurar el flujo de autenticación en el lado del servidor</strong> Cuando un usuario inicie sesión con Google, se generará un token de autenticación en el cliente.
 En el servidor, debes recibir y verificar el token de autenticación para asegurarte de que sea válido.</p>
 <p><strong>Implementar el flujo de inicio de sesión con Google: </strong>Puedes obtener información como el nombre, el apellido, el correo electrónico, la foto de perfil, etc</p>
+<p>Tendríamos que crear también un archvo .env que tenga estos datos: 
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+TOKEN_SECRET=
+</p>
