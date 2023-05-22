@@ -123,46 +123,8 @@ const Profile = () => {
       )}
       <br />
       {!data.userInfo && (
-        <form className="CrearInfo" action="" onSubmit={createUserInfo}>
-          <label className="textoLogin" htmlFor="name">
-            Nombre{" "}
-          </label>
-          <input className="cajaLogin" type="text" name="name" id="name" />
-          <label className="textoLogin" htmlFor="lastname">
-            Apellido{" "}
-          </label>
-          <input
-            className="cajaLogin"
-            type="text"
-            name="lastname"
-            id="lastname"
-          />
-          <label className="textoLogin" htmlFor="address">
-            Dirección{" "}
-          </label>
-          <input
-            className="cajaLogin"
-            type="text"
-            name="address"
-            id="address"
-          />
-          <label className="textoLogin" htmlFor="phoneNumber">
-            Teléfono{" "}
-          </label>
-          <input
-            className="cajaLogin"
-            type="tel"
-            name="phoneNumber"
-            id="phoneNumber"
-          />
-          <input className="botonEditar" type="submit" value="Guardar" />
-        </form>
-      )}
-      <br />
-      {data.userInfo && (
-        <div className="updateDatos">
-          <p className="pregunta">¿Quieres cambiar tu perfil?</p>
-          <form action="" onSubmit={updateUserInfo}>
+        <div className="login-container">
+          <form className="CrearInfo" action="" onSubmit={createUserInfo}>
             <label className="textoLogin" htmlFor="name">
               Nombre{" "}
             </label>
@@ -194,8 +156,50 @@ const Profile = () => {
               name="phoneNumber"
               id="phoneNumber"
             />
-            <input className="botonEditar" type="submit" value="Editar" />
+            <input className="botonEditar" type="submit" value="Guardar" />
           </form>
+        </div>
+      )}
+      <br />
+      {data.userInfo && (
+        <div className="updateDatos">
+          <div className="login-container">
+            <p className="pregunta">¿Quieres cambiar tu perfil?</p>
+            <form action="" onSubmit={updateUserInfo}>
+              <label className="textoLogin" htmlFor="name">
+                Nombre{" "}
+              </label>
+              <input className="cajaLogin" type="text" name="name" id="name" />
+              <label className="textoLogin" htmlFor="lastname">
+                Apellido{" "}
+              </label>
+              <input
+                className="cajaLogin"
+                type="text"
+                name="lastname"
+                id="lastname"
+              />
+              <label className="textoLogin" htmlFor="address">
+                Dirección{" "}
+              </label>
+              <input
+                className="cajaLogin"
+                type="text"
+                name="address"
+                id="address"
+              />
+              <label className="textoLogin" htmlFor="phoneNumber">
+                Teléfono{" "}
+              </label>
+              <input
+                className="cajaLogin"
+                type="tel"
+                name="phoneNumber"
+                id="phoneNumber"
+              />
+              <input className="botonEditar" type="submit" value="Editar" />
+            </form>
+          </div>
         </div>
       )}
       <Footer />

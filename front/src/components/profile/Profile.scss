@@ -1,4 +1,4 @@
-.tuPerfil {
+/* .tuPerfil {
   text-align: center;
   margin-top: 100px;
   font-size: 50px;
@@ -9,6 +9,7 @@
 
 .datosAll {
   margin-top: 50px;
+  margin-left: 30px;
   color: #4a442d;
 }
 
@@ -31,10 +32,10 @@
   font-size: 15px;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
-  text-align: center;
-}
+  text align:center;
+}*/
 
-.cajaLogin {
+/* .cajaLogin {
   margin-right: 20px;
   font-size: 20px;
   font-family: "Roboto", sans-serif;
@@ -46,7 +47,76 @@
   font-size: 20px;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
-}
-.CrearInfo {
-  margin-bottom: 480px;
+} */
+.login-container {
+  margin: 100px auto;
+  background-color: #caf7e2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  width: 50%;
+  height: 50%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  border: 4px solid #58b09c;
+  align-items: center;
+  p {
+    font-size: 30px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    color: #4a442d;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    gap: 10px;
+    label {
+      font-size: 20px;
+      font-family: "Roboto", sans-serif;
+      font-weight: bold;
+      color: #4a442d;
+    }
+    input {
+      margin-top: 10px;
+      height: 40px;
+      border-radius: 10px;
+      border: 2px solid #58b09c;
+      padding: 10px;
+      font-size: 20px;
+      font-family: "Roboto", sans-serif;
+      font-weight: bold;
+      color: #4a442d;
+    }
+    button {
+      margin-top: 10px;
+      height: 100%;
+      border-radius: 10px;
+      padding: 10px;
+      border: 2px solid #58b09c;
+      font-size: 20px;
+      font-family: "Roboto", sans-serif;
+      font-weight: bold;
+      color: #caf7e2;
+      background-color: #58b09c;
+      cursor: pointer;
+      &:hover {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+      }
+    }
+    a {
+      text-decoration: none;
+      color: #4a442d;
+      font-size: 20px;
+      font-family: "Roboto", sans-serif;
+      font-weight: bold;
+      &:hover {
+        color: #58b09c;
+        cursor: pointer;
+      }
+    }
+  }
 }

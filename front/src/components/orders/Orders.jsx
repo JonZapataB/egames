@@ -123,9 +123,9 @@ const Orders = () => {
 
   if (data.length > 0)
     return (
-      <div>
+      <div className="orderGeneral">
         <NavBar></NavBar>
-        <h2>Tu carrito: </h2>
+        <h2 className="tuCarrito">Tu carrito: </h2>
         <br />
         <div className="total">
           <Row>
@@ -140,11 +140,15 @@ const Orders = () => {
                     <ListGroup.Item key={order.idgame}>
                       <Row>
                         <Col md={4}>
-                          <img src={order.stock.game.cover} alt="" />{" "}
                           <h3>
                             <strong>Nombre: </strong>
                             {order.stock.game.name}
                           </h3>
+                          <img
+                            className="imgOrders"
+                            src={order.stock.game.cover}
+                            alt=""
+                          />{" "}
                         </Col>
                         <Col>
                           <h2>
@@ -152,10 +156,16 @@ const Orders = () => {
                             {order.stock.platform}
                           </h2>
                         </Col>
-                        <Col md={3}>Precio: {order.stock.price / 100}€</Col>
+                        <Col className="precioOrders" md={3}>
+                          <h2>
+                            <strong>Precio: </strong>
+                            {order.stock.price / 100}€
+                          </h2>
+                        </Col>
                         <div>
                           <Col md={3}>
                             <button
+                              className="botonmenos"
                               /*                             disabled={order.quantity === 1}
                                */ onClick={() =>
                                 handleAddToCart(
@@ -169,6 +179,7 @@ const Orders = () => {
                             </button>
                             {order.quantity}
                             <button
+                              className="botonmas"
                               onClick={() =>
                                 handleAddToCart(
                                   order.stock.game,
@@ -182,6 +193,7 @@ const Orders = () => {
                         </div>
                         <Col md={2}>
                           <button
+                            className="botonEliminar"
                             onClick={() =>
                               handleDeleteOrder(
                                 order.idorder,
@@ -202,7 +214,7 @@ const Orders = () => {
             <Col md={4}></Col>
           </Row>
         </div>
-        <div className="total">
+        <div className="totalPrecio">
           <h2 className="totalTittle">Total</h2>
           <p className="totalPrice">{getTotal(data[0]) / 100}€</p>
         </div>
@@ -211,15 +223,22 @@ const Orders = () => {
           /*           disabled={data.length === 0}
            */ onClick={checkOutHandler /* () => navigate("/payment") */}
         >
-          Comprar
+          Comprar 💲
         </button>
+        <Footer />
       </div>
     );
   else
     return (
       <div>
-        El carrito está vacío.
-        <button onClick={() => navigate("/")}>Ir a la tienda</button>
+        <NavBar></NavBar>
+        <div className="textoGeneral">
+          <h1>El carrito está vacío.</h1>
+          <h2>Gratis no te vamos a dar nada 😜</h2>
+        </div>
+        <button className="noOrders" onClick={() => navigate("/")}>
+          Ir a la tienda
+        </button>
         <Footer />
       </div>
     );

@@ -30,8 +30,9 @@ function NavScrollExample() {
           title={<HiMenu />}
           id="navbarScrollingDropdown"
         >
-          <NavDropdown.Item href="#novedades">Novedades</NavDropdown.Item>
-          <NavDropdown.Item href="#videojuegos">Videojuegos</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to="/">
+            Videojuegos
+          </NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="#sobrenosotros">
             Sobre Nosotros
