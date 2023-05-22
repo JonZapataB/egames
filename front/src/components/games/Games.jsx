@@ -3,8 +3,9 @@ import Axios from "axios";
 import DatesGameCarousel from "./DatesGameCarousel";
 import GameDescription from "./GameDescription";
 import "./Games.scss";
+import { HiOutlineArrowUpCircle } from "react-icons/hi2";
 
-const Games = () => {
+const Games = ({ refTo }) => {
   const [games, setGames] = useState([]);
   const [filteredGames, setFilteredGames] = useState([]);
   const [platform, setPlatform] = useState("All");
@@ -52,6 +53,10 @@ const Games = () => {
       const dateB = new Date(b.release_date);
       return dateB - dateA;
     });
+  };
+
+  const goToTop = () => {
+    refTo.current.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -164,6 +169,7 @@ const Games = () => {
               <GameDescription game={game} handleClose={handleClose} />
             )}
           </div>
+          <HiOutlineArrowUpCircle className="botonSubir" onClick={goToTop} />
         </div>
       </div>
     );
